@@ -233,3 +233,17 @@ Processing by ApplicationController#hello as HTML
 Completed 200 OK in 6ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 1117)
 
 
+Started GET "/" for ::1 at 2019-10-23 15:24:25 -0700
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 1117)
+
+
+Started GET "/" for ::1 at 2019-10-23 15:40:24 -0700
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.1ms | Allocations: 3)
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 321)
+
+
