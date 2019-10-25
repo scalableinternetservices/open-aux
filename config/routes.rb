@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'playlist/show'
+  get 'guests/new'
   get 'sessions/new'
   #get 'users/new'
   get '/signup', to:'users#new'
@@ -14,6 +15,9 @@ Rails.application.routes.draw do
   #playlist
   post    '/createPlaylist',   to: 'playlist#create'
   resources :playlist
+  #guest
+  get    '/join',    to: 'guests#new'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"
   resources :users
