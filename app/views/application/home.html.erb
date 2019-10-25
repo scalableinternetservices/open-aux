@@ -1,6 +1,15 @@
 <!DOCTYPE HTML>
-<div class="home-wrapper">
-    <div>
-        <h1>Hello</h1>
-    </div>
-</div>
+<html>
+    <body>
+        <div class="home-wrapper">
+            <div class="button-wrapper">
+                <div class="btn btn-primary btn-lg">
+                    <%= link_to "Host a Playlist", "/login", :class => "btn-primary btn-lg" %>
+                </div>
+                <div class="btn btn-danger btn-lg">
+                    <%= link_to "Join a Playlist", "/join", :class => "btn-danger btn-lg" %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
