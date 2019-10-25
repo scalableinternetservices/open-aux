@@ -4741,8 +4741,13 @@ puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
 puma (3.12.1) lib/puma/server.rb:474:in `process_client'
 puma (3.12.1) lib/puma/server.rb:334:in `block in run'
 puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+<<<<<<< HEAD
 Started GET "/" for ::1 at 2019-10-25 10:48:01 -0700
   [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+=======
+Started GET "/" for ::1 at 2019-10-24 14:39:58 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+>>>>>>> 856b2fe6f9d363ab009fc4d07e23e49189360ea5
   
 ActiveRecord::PendingMigrationError (
 
@@ -4789,6 +4794,7 @@ puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
 puma (3.12.1) lib/puma/server.rb:474:in `process_client'
 puma (3.12.1) lib/puma/server.rb:334:in `block in run'
 puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+<<<<<<< HEAD
 Started GET "/signup/" for ::1 at 2019-10-25 10:48:08 -0700
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   
@@ -5128,5 +5134,215 @@ Processing by UsersController#show as HTML
   Rendering users/show.html.erb within layouts/application
   Rendered users/show.html.erb within layouts/application (Duration: 0.0ms | Allocations: 10)
 Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.3ms | Allocations: 6544)
+=======
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1851110365585610850)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPasswordDigestToUsers (20191024212327)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" character varying[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20191024212327"]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1851110365585610850)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2019-10-24 14:40:18 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 819)
+
+
+Started GET "/login" for ::1 at 2019-10-24 14:40:21 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 2251)
+Completed 200 OK in 600ms (Views: 599.1ms | ActiveRecord: 0.0ms | Allocations: 1270928)
+
+
+Started GET "/signup" for ::1 at 2019-10-24 14:40:26 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1296)
+Completed 200 OK in 24ms (Views: 12.2ms | ActiveRecord: 3.5ms | Allocations: 12997)
+
+
+Started GET "/login" for ::1 at 2019-10-24 14:40:30 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 433)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.0ms | Allocations: 5775)
+
+
+Started GET "/signup" for ::1 at 2019-10-24 14:40:36 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 811)
+Completed 200 OK in 16ms (Views: 14.2ms | ActiveRecord: 0.0ms | Allocations: 6181)
+
+
+Started POST "/signup" for ::1 at 2019-10-24 14:40:49 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"e059wP4apX/pWK+z+ApVa2AkOw9vvRdp1LIZMEYb4efrL7zNJJoRuNqML1PlWw9YLuE8zHBHMvHueTFnUmzGIw==", "user"=>{"name"=>"justin", "email"=>"jhan25@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jhan25@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "justin"], ["email", "jhan25@gmail.com"], ["created_at", "2019-10-24 21:40:49.603007"], ["updated_at", "2019-10-24 21:40:49.603007"], ["password_digest", "$2a$12$6z2iU0tUlPeELYqF7uKFfOWqjoCgG0/FnPqTkIskkybj0GWkUZdfq"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 237ms (ActiveRecord: 3.8ms | Allocations: 4681)
+
+
+Started GET "/users/1" for ::1 at 2019-10-24 14:40:49 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 116)
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 0.3ms | Allocations: 6375)
+
+
+Started GET "/login" for ::1 at 2019-10-24 14:40:53 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 433)
+Completed 200 OK in 40ms (Views: 38.0ms | ActiveRecord: 0.0ms | Allocations: 5793)
+
+
+Started POST "/login" for ::1 at 2019-10-24 14:40:59 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"1kc47Mb5dJ3bh1Kjc1nydYx6rfo0/azw9R/ynQvQHmNGJvnhHHnAWuhT0kNuCKhGwr+qOSsHiWjP1NrKH6c5pw==", "session"=>{"email"=>"jhan25@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jhan25@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 283ms (ActiveRecord: 0.8ms | Allocations: 1192)
+
+
+Started GET "/users/1" for ::1 at 2019-10-24 14:40:59 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 10)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.2ms | Allocations: 5932)
+
+
+Started GET "/login" for ::1 at 2019-10-24 14:41:16 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 425)
+Completed 200 OK in 45ms (Views: 43.3ms | ActiveRecord: 0.0ms | Allocations: 5783)
+
+
+Started POST "/login" for ::1 at 2019-10-24 14:41:30 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"wasYvdNVYn11FmyLDYjFhaMYNpvyRYRmiXAJROVqM55RytmwCdXWukbC7GsQ2Z+27d0xWO2/of6zuyET8R0UWg==", "session"=>{"email"=>"jhan25@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jhan25@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 421)
+Completed 200 OK in 288ms (Views: 4.7ms | ActiveRecord: 1.7ms | Allocations: 6422)
+
+
+Started POST "/login" for ::1 at 2019-10-24 14:41:37 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"uTtW1YZ4xM6yPyX8qLF9OyD78Zk+64+I3cQNdkcUyV8pWpfYXPhwCYHrpRy14CcIbj72WiERqhDnDyUhU2Pumw==", "session"=>{"email"=>"jhan25@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jhan25@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.5ms | Allocations: 421)
+Completed 200 OK in 237ms (Views: 4.1ms | ActiveRecord: 0.3ms | Allocations: 6399)
+
+
+Started POST "/login" for ::1 at 2019-10-24 14:41:44 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"22PDhkyhs3ndHVHfKVkrv2OZC6vTJA100E60xpIwYFRLAgKLliEHvu7J0T80CHGMLVwMaMzeKOzqhZyRhkdHkA==", "session"=>{"email"=>"jhan25@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jhan25@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:7:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 298ms (ActiveRecord: 1.4ms | Allocations: 1036)
+
+
+Started GET "/users/1" for ::1 at 2019-10-24 14:41:45 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 10)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.2ms | Allocations: 5911)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:15:35 -0700
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 1118)
+
+
+Started GET "/login" for ::1 at 2019-10-25 14:15:38 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 31.5ms | Allocations: 2388)
+Completed 200 OK in 629ms (Views: 620.4ms | ActiveRecord: 0.0ms | Allocations: 1266332)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:18:38 -0700
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.1ms | Allocations: 3)
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 430)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:19:34 -0700
+Processing by ApplicationController#home as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 3)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 604)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:22:24 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 97)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 6035)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:34:07 -0700
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.4ms | Allocations: 202)
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /home/jhan25/open-aux/public/packs
+Completed 200 OK in 5360ms (Views: 5356.0ms | ActiveRecord: 0.0ms | Allocations: 3397453)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:38:26 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.9ms | Allocations: 93)
+Completed 200 OK in 1492ms (Views: 1487.6ms | ActiveRecord: 0.0ms | Allocations: 1409145)
+
+
+Started GET "/login" for ::1 at 2019-10-25 14:39:47 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2255)
+Completed 200 OK in 15ms (Views: 13.3ms | ActiveRecord: 0.0ms | Allocations: 12118)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:40:35 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 44ms (Views: 42.7ms | ActiveRecord: 0.0ms | Allocations: 9295)
+>>>>>>> 856b2fe6f9d363ab009fc4d07e23e49189360ea5
 
 
