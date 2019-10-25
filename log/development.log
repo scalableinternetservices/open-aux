@@ -5302,3 +5302,845 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 8ms (Views: 7.8ms | ActiveRecord: 0.0ms | Allocations: 7112)
 
 
+Started GET "/login" for ::1 at 2019-10-25 15:07:02 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 11.6ms | Allocations: 2390)
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /Users/arvis/CS/CS188/open-aux/public/packs
+Completed 200 OK in 8883ms (Views: 8875.8ms | ActiveRecord: 0.0ms | Allocations: 3495962)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:07:19 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1295)
+Completed 200 OK in 46ms (Views: 24.7ms | ActiveRecord: 7.1ms | Allocations: 17358)
+
+
+Started POST "/signup" for ::1 at 2019-10-25 15:07:27 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"9YZgJgQn9YKqxFpWy+Ns+5NFSZv2yy7+fCYapfUJE7G0Ncab1P225zdf2C6yb30n8MLtj+pNq3WyEYlovR3g7A==", "user"=>{"name"=>"test1", "email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 830)
+Completed 200 OK in 252ms (Views: 14.9ms | ActiveRecord: 1.0ms | Allocations: 14588)
+
+
+Started POST "/signup" for ::1 at 2019-10-25 15:07:31 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"eUcqjnu3oDMpWWg1Djl7P9PnILRypJ8wDfPvbcZYo8U49Iwzq23jVrTC6k13tWrjsGCEoG4iGrvDxHygjkxQmA==", "user"=>{"name"=>"test1", "email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 824)
+Completed 200 OK in 28ms (Views: 17.0ms | ActiveRecord: 1.8ms | Allocations: 14459)
+
+
+Started POST "/signup" for ::1 at 2019-10-25 15:07:33 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"HGUMw9rnH6TDMPEq46KPYVBuxkVgkJTkV+DEdPEP8b5d1qp+Cj1cwV6rc1KaLp69M+liUXwWEW+Z11e5uRsC4w==", "user"=>{"name"=>"test1", "email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 820)
+Completed 200 OK in 240ms (Views: 11.8ms | ActiveRecord: 0.5ms | Allocations: 13822)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:07:35 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 812)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.0ms | Allocations: 10655)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:07:39 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 433)
+Completed 200 OK in 16ms (Views: 14.8ms | ActiveRecord: 0.0ms | Allocations: 10239)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:07:45 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"BbVhSW2FRlGKsv/3IpFHHgit9QYir+6IbiDQs6Ws1EtEBsf0vV8FNBcpfY9bHVbCaypREj4pawOgF0N+7bgnFg==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1024)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.0ms | Allocations: 11430)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:07:49 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"+BJ/wNeln236LqzhV40Y3gHZjjV69aD9g3v71Y+G0AO5odl9B3/cCGe1LpkuAQkCYl4qIWZzJXZNTGgYx5IjXg==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 331)
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.0ms | Allocations: 10221)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:08:31 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 669)
+Completed 200 OK in 16ms (Views: 14.7ms | ActiveRecord: 0.0ms | Allocations: 11402)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:08:40 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"KxXObfON0aKADnbAfnPczkCISm1hjol7Pv6pibVC6fhqpmjQI1eSxx2V9LgH/80SIw/ueX0IDPDwyTpE/VYapQ==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 524)
+Completed 200 OK in 14ms (Views: 13.2ms | ActiveRecord: 0.0ms | Allocations: 10968)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:08:58 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 669)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.0ms | Allocations: 11405)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:09:04 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"eY04lSXy1i0eV8nrEVSASdSqspbWt7rDxn0J2fGA0084Pp4o9SiVSIPMS5No2JGVty0WgsoxP0gISpoUuZQgEg==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 526)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.0ms | Allocations: 10959)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:09:50 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 669)
+Completed 200 OK in 15ms (Views: 13.8ms | ActiveRecord: 0.0ms | Allocations: 11413)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:09:57 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"/6rgaEk0Tj8v65IVteiG3nudsM0g2zkeOop0xWva12m+GUbVme4NWrJwEG3MZJcCGBoU2TxdvJX0vecII84kNA==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 526)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms | Allocations: 10975)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:10:36 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 669)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.0ms | Allocations: 11410)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:10:43 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"yBCGOmAu0HpnBgO1mNsEMxcy2Pz7z6UipjBbpRTI3PSJoyCHsPSTH/qdgc3hVxXvdLV86OdJIKloB8hoXNwvqQ==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 525)
+Completed 200 OK in 15ms (Views: 14.1ms | ActiveRecord: 0.0ms | Allocations: 10969)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:11:10 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 669)
+Completed 200 OK in 16ms (Views: 15.5ms | ActiveRecord: 0.0ms | Allocations: 11407)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:11:14 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"Kt/h3vSJVaP4EqFXlmjextdMvoDb92ALbCKXgl8V9G9rbEdjJFMWxmWJIy/v5M8atMsalMdx5YCiFQRPFwEHMg==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 530)
+Completed 200 OK in 50ms (Views: 15.3ms | ActiveRecord: 0.0ms | Allocations: 10964)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:11:21 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 669)
+Completed 200 OK in 13ms (Views: 12.1ms | ActiveRecord: 0.0ms | Allocations: 11417)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:11:28 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"gHUaYKpIsFqemhfhSdfiPFy9YGgOAe3IWN8CLuXUE2fBxrzdepLzPwMBlZkwW/PgPzrEfBKHaEOW6JHjrcDgOg==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 438)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.0ms | Allocations: 10864)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:11:32 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"zN/l9N4jNcKlejkYchAHZEM5tT1FWI3RMEvG/3f2r0qNbENJDvl2pzjhu2ALnBa4IL4RKVneCFr+fFUyP+JcFw==", "playlist"=>{"name"=>"test"}, "commit"=>"Create my Playlist"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.8ms | Allocations: 257)
+Completed 200 OK in 13ms (Views: 12.3ms | ActiveRecord: 0.0ms | Allocations: 10120)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:15:27 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"iSJXaVlDFtRcioV3ZIZ6iMgNVC5vYxr0v+eqDhUgQa3IkfHUiZlVscERBw8dCmtUq4rwOnPln39x0DnDXTSy8A==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 756)
+Completed 200 OK in 19ms (Views: 18.0ms | ActiveRecord: 0.0ms | Allocations: 10791)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:16:49 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 670)
+Completed 200 OK in 13ms (Views: 12.3ms | ActiveRecord: 0.0ms | Allocations: 11405)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:16:55 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"7bLSStVjMGsvAuaRrbG6XrVC8Mb/Zs/WgdUBky4x7wKsAXT3BblzDrKZZOnUPauC1sVU0uPgSl1P4pJeZiUcXw==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 926)
+Completed 200 OK in 25ms (Views: 22.5ms | ActiveRecord: 0.0ms | Allocations: 11363)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:16:58 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"lyb6Y1LV5IXKhyaXnzSDwktMW9adE4ZjEELxUlwQs+vWlVzegg+n4FccpO/muJIeKMv/woGVA+jedWKfFARAtg==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 257)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.0ms | Allocations: 10114)
+
+
+  [1m[36mPlaylist Load (0.3ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/login" for ::1 at 2019-10-25 15:21:58 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"pqYHhywujYqGaRb+o6vCTJGhV5OFMQESK0MWbbk3soDnFaE6/PTO7xvylIbaJ9OQ8ibzh5m3hJnldIWg8SNB3Q==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 13.9ms | Allocations: 5818)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.0ms | Allocations: 7086)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:23:19 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"pqYHhywujYqGaRb+o6vCTJGhV5OFMQESK0MWbbk3soDnFaE6/PTO7xvylIbaJ9OQ8ibzh5m3hJnldIWg8SNB3Q==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.7ms | Allocations: 1025)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 2331)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <% provide(:title, "playlist") %>
+
+<div class="row justify-content-center">
+<h1>Playlist Name</h1>
+ <div class="col-md-6 col-md-offset-3">
+  <%= form_for (:playlist, url: createPlaylist_path )do |f| %>
+
+     <%= f.text_field :name, class: "form-control" %>
+     <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+    <% end %>
+ </div>
+</div>
+):
+1:    <% provide(:title, "playlist") %>
+2:    
+3:    <div class="row justify-content-center">
+4:    <h1>Playlist Name</h1>
+5:     <div class="col-md-6 col-md-offset-3">
+6:      <%= form_for (:playlist, url: createPlaylist_path )do |f| %>
+7:    
+8:         <%= f.text_field :name, class: "form-control" %>
+9:         <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+10:        <% end %>
+11:     </div>
+12:    </div>
+  
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+Started GET "/login" for ::1 at 2019-10-25 15:23:20 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 681)
+Completed 200 OK in 19ms (Views: 17.6ms | ActiveRecord: 0.0ms | Allocations: 11269)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:23:25 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"hEm1rPiN8BQzx1Ck7or7+Roc5IIQppLqZKzai13e6EzF+hMRKFezca5c0tyXBuoleZtAlgwgF2Gqm0lGFcobEQ==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1051)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1583)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <% provide(:title, "playlist") %>
+
+<div class="row justify-content-center">
+<h1>Playlist Name</h1>
+ <div class="col-md-6 col-md-offset-3">
+  <%= form_for (:playlist, url: createPlaylist_path )do |f| %>
+
+     <%= f.text_field :name, class: "form-control" %>
+     <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+    <% end %>
+ </div>
+</div>
+):
+1:    <% provide(:title, "playlist") %>
+2:    
+3:    <div class="row justify-content-center">
+4:    <h1>Playlist Name</h1>
+5:     <div class="col-md-6 col-md-offset-3">
+6:      <%= form_for (:playlist, url: createPlaylist_path )do |f| %>
+7:    
+8:         <%= f.text_field :name, class: "form-control" %>
+9:         <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+10:        <% end %>
+11:     </div>
+12:    </div>
+  
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected ',', expecting ')'
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+Started PUT "/__web_console/repl_sessions/f3d4fe764cd4b94a0b0859dc728bfecf" for ::1 at 2019-10-25 15:24:00 -0700
+Started PUT "/__web_console/repl_sessions/f3d4fe764cd4b94a0b0859dc728bfecf" for ::1 at 2019-10-25 15:24:02 -0700
+Started PUT "/__web_console/repl_sessions/f3d4fe764cd4b94a0b0859dc728bfecf" for ::1 at 2019-10-25 15:24:04 -0700
+Started POST "/login" for ::1 at 2019-10-25 15:24:16 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"hEm1rPiN8BQzx1Ck7or7+Roc5IIQppLqZKzai13e6EzF+hMRKFezca5c0tyXBuoleZtAlgwgF2Gqm0lGFcobEQ==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 1069)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 2342)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <% provide(:title, "playlist") %>
+
+<div class="row justify-content-center">
+<h1>Playlist Name</h1>
+ <div class="col-md-6 col-md-offset-3">
+  <%= form_for (@playlist, url: createPlaylist_path )do |f| %>
+
+     <%= f.text_field :name, class: "form-control" %>
+     <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+    <% end %>
+ </div>
+</div>
+):
+1:    <% provide(:title, "playlist") %>
+2:    
+3:    <div class="row justify-content-center">
+4:    <h1>Playlist Name</h1>
+5:     <div class="col-md-6 col-md-offset-3">
+6:      <%= form_for (@playlist, url: createPlaylist_path )do |f| %>
+7:    
+8:         <%= f.text_field :name, class: "form-control" %>
+9:         <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+10:        <% end %>
+11:     </div>
+12:    </div>
+  
+app/views/playlist/new.html.erb:6: syntax error, unexpected tLABEL, expecting '='
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected tLABEL, expecting '='
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected tLABEL, expecting '='
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected tLABEL, expecting '='
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected tLABEL, expecting '='
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+app/views/playlist/new.html.erb:6: syntax error, unexpected tLABEL, expecting '='
+app/views/playlist/new.html.erb:14: syntax error, unexpected end, expecting end-of-input
+Started POST "/login" for ::1 at 2019-10-25 15:24:48 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"hEm1rPiN8BQzx1Ck7or7+Roc5IIQppLqZKzai13e6EzF+hMRKFezca5c0tyXBuoleZtAlgwgF2Gqm0lGFcobEQ==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1073)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2345)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    3: <div class="row justify-content-center">
+    4: <h1>Playlist Name</h1>
+    5:  <div class="col-md-6 col-md-offset-3">
+    6:   <%= form_for(@playlist, url: createPlaylist_path) do |f| %>
+    7: 
+    8:      <%= f.text_field :name, class: "form-control" %>
+    9:      <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+  
+app/views/playlist/new.html.erb:6
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:02 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:05 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:07 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:08 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:09 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:11 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:13 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:23 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:25 -0700
+Started PUT "/__web_console/repl_sessions/c241fc892825a26cb162f07e22cc92e0" for ::1 at 2019-10-25 15:25:39 -0700
+Started POST "/login" for ::1 at 2019-10-25 15:25:59 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"hEm1rPiN8BQzx1Ck7or7+Roc5IIQppLqZKzai13e6EzF+hMRKFezca5c0tyXBuoleZtAlgwgF2Gqm0lGFcobEQ==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 387)
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.0ms | Allocations: 11181)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:26:02 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"7uVtu+asXd1GV4/nqNUv7lM/BzMMAAkPIi4anrgVV7CvVssGNnYeuNvMDZ/RWT4yMLijJxCGjITsGYlT8AGk7Q==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to 
+Completed 500 Internal Server Error in 256ms (ActiveRecord: 5.6ms | Allocations: 128693)
+
+
+  
+NoMethodError (undefined method `playlists_url' for #<PlaylistController:0x00007fee93f73b20>
+Did you mean?  playlist_url
+               playlist_show_url):
+  
+app/controllers/playlist_controller.rb:10:in `create'
+Started PUT "/__web_console/repl_sessions/249281313e8d7124e0019772623e954d" for ::1 at 2019-10-25 15:26:22 -0700
+Started PUT "/__web_console/repl_sessions/249281313e8d7124e0019772623e954d" for ::1 at 2019-10-25 15:26:24 -0700
+Started PUT "/__web_console/repl_sessions/249281313e8d7124e0019772623e954d" for ::1 at 2019-10-25 15:26:24 -0700
+Started PUT "/__web_console/repl_sessions/249281313e8d7124e0019772623e954d" for ::1 at 2019-10-25 15:26:26 -0700
+Started PUT "/__web_console/repl_sessions/249281313e8d7124e0019772623e954d" for ::1 at 2019-10-25 15:26:27 -0700
+Started PUT "/__web_console/repl_sessions/249281313e8d7124e0019772623e954d" for ::1 at 2019-10-25 15:26:27 -0700
+  [1m[36mPlaylist Load (0.5ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mPlaylist Load (1.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:29:37 -0700
+  
+ActionController::RoutingError (uninitialized constant PlaylistsController
+Did you mean?  PlaylistController):
+  
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.0) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.0) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.0) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.0) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.0) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.0) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.0) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.0) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.0) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (6.0.0) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.0) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.0) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.0) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2019-10-25 15:29:48 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 670)
+Completed 200 OK in 23ms (Views: 20.4ms | ActiveRecord: 0.0ms | Allocations: 11099)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:29:54 -0700
+  
+ActionController::RoutingError (uninitialized constant PlaylistsController
+Did you mean?  PlaylistController):
+  
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:282:in `const_get'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:282:in `block in constantize'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:280:in `each'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:280:in `inject'
+activesupport (6.0.0) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (6.0.0) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.0.0) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.0) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.0) lib/action_dispatch/routing/route_set.rb:45:in `controller'
+actionpack (6.0.0) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.0) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.0) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.0) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.0) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (6.0.0) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.0) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.0) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.0) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/login" for ::1 at 2019-10-25 15:30:06 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"w1T7247/BdJ1WNS+6jzNfCmpwpe6Cf74NTxT3iUiXjeC511mXiVGt+jDVsaTsNygSi5mg6aPe3P7C8ATbTatag==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 217)
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.0ms | Allocations: 10276)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:30:10 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"TxOWwoZKzCQtBZWE2bYaqupmXCpgWAcvY5D06QBfaAIOoDB/VpCPQbCeF/ygOgt2ieH4PnzegqStp2ckSEubXw==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to 
+Completed 500 Internal Server Error in 255ms (ActiveRecord: 4.1ms | Allocations: 128552)
+
+
+  
+NoMethodError (undefined method `playlists_url' for #<PlaylistController:0x00007fee93b6d0f8>
+Did you mean?  playlist_url
+               playlist_show_url):
+  
+app/controllers/playlist_controller.rb:10:in `create'
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:30:56 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"TxOWwoZKzCQtBZWE2bYaqupmXCpgWAcvY5D06QBfaAIOoDB/VpCPQbCeF/ygOgt2ieH4PnzegqStp2ckSEubXw==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000show
+Completed 302 Found in 12ms (ActiveRecord: 4.6ms | Allocations: 3413)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:30:57 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"TxOWwoZKzCQtBZWE2bYaqupmXCpgWAcvY5D06QBfaAIOoDB/VpCPQbCeF/ygOgt2ieH4PnzegqStp2ckSEubXw==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000show
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 449)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:30:59 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 434)
+Completed 200 OK in 22ms (Views: 21.1ms | ActiveRecord: 0.0ms | Allocations: 10405)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:31:04 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"eJDs041U9/G9t2R+/Jlg3lJzs1eIUkD8YS0XPA0rkHc5I0puXY60lCAs5gaFFXECMfQXQ5TUxXevGoTxRT9jKg==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.7ms | Allocations: 217)
+Completed 200 OK in 17ms (Views: 16.1ms | ActiveRecord: 0.0ms | Allocations: 10240)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:31:07 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"tAl5+J+ry+Wro/0bbGpNWE50jCO52q30O6vNH5DchXD1ut9FT3GIgDY4f2MV5lyELfMoN6VcKH/1nF7S2Mh2LQ==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000show
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 457)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:31:41 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"tAl5+J+ry+Wro/0bbGpNWE50jCO52q30O6vNH5DchXD1ut9FT3GIgDY4f2MV5lyELfMoN6VcKH/1nF7S2Mh2LQ==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000/playlist/show
+Completed 302 Found in 6ms (ActiveRecord: 2.3ms | Allocations: 3442)
+
+
+Started GET "/playlist/show" for ::1 at 2019-10-25 15:31:42 -0700
+Processing by PlaylistController#show as HTML
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 675)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Playlist without an ID):
+  
+app/controllers/playlist_controller.rb:6:in `show'
+Started GET "/playlist/show" for ::1 at 2019-10-25 15:32:13 -0700
+Processing by PlaylistController#show as HTML
+Completed 404 Not Found in 7ms (ActiveRecord: 3.8ms | Allocations: 1484)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Playlist without an ID):
+  
+app/controllers/playlist_controller.rb:6:in `show'
+Started GET "/playlist/show" for ::1 at 2019-10-25 15:32:14 -0700
+Processing by PlaylistController#show as HTML
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 643)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Playlist without an ID):
+  
+app/controllers/playlist_controller.rb:6:in `show'
+Started PUT "/__web_console/repl_sessions/504bd5866659996679abb151e885f9e9" for ::1 at 2019-10-25 15:32:18 -0700
+Started PUT "/__web_console/repl_sessions/504bd5866659996679abb151e885f9e9" for ::1 at 2019-10-25 15:32:19 -0700
+Started PUT "/__web_console/repl_sessions/504bd5866659996679abb151e885f9e9" for ::1 at 2019-10-25 15:32:19 -0700
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/playlist/show" for ::1 at 2019-10-25 15:32:36 -0700
+Processing by PlaylistController#show as HTML
+Completed 404 Not Found in 9ms (ActiveRecord: 5.7ms | Allocations: 1524)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Playlist without an ID):
+  
+app/controllers/playlist_controller.rb:6:in `show'
+Started GET "/login" for ::1 at 2019-10-25 15:32:38 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 434)
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.0ms | Allocations: 10412)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:32:43 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"gsJ3YMUgE3CBAtK2qH7Nh0Gs+gQPxcPKDwg1ce90+tnDcdHdFfpQFRyZUM7R8txbIiteEBNDRkHBP6a8p2AJhA==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.7ms | Allocations: 217)
+Completed 200 OK in 18ms (Views: 16.9ms | ActiveRecord: 0.0ms | Allocations: 10237)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:32:45 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"MpdQUN3Rv0y5CUDfdRGzAbauRPgZwi8kU14HQboZgmlzJPbtDQv8KSSSwqcMnaLd1Sng7AVEqq+daZSM8g1xNA==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000/playlist/show
+Completed 302 Found in 123963ms (ActiveRecord: 0.0ms | Allocations: 182687)
+
+
+Started POST "/playlist/show" for ::1 at 2019-10-25 15:35:00 -0700
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/playlist/show"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-10-25 15:35:05 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 1.9ms | Allocations: 88)
+Completed 200 OK in 1466ms (Views: 1462.9ms | ActiveRecord: 0.0ms | Allocations: 1371134)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:35:13 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 9.3ms | Allocations: 2145)
+Completed 200 OK in 58ms (Views: 56.1ms | ActiveRecord: 0.0ms | Allocations: 12564)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:35:20 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"DAOGjqLZUw78Xt+yZ4L61sL3MWw8JXTAJ7WrYF2RINJNsCAzcgMQa2HFXcoeDusKoXCVeCCj8UvpgjitFYXTjw==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.0ms | Allocations: 412)
+Completed 200 OK in 16ms (Views: 14.2ms | ActiveRecord: 0.0ms | Allocations: 10875)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:35:23 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"9kDsUQvm9+N3NO3zHLEYVxTpWf1O9win7JqVBZO/MbG380rs2zy0huqvb4tlPQmLd2796VJxjSwirQbI26vC7A==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 5.3ms | Allocations: 3991)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/playlist_controller.rb:9:in `create'
+Started GET "/login" for ::1 at 2019-10-25 15:35:50 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 434)
+Completed 200 OK in 10ms (Views: 9.8ms | ActiveRecord: 0.0ms | Allocations: 10409)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:35:54 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"9kDsUQvm9+N3NO3zHLEYVxTpWf1O9win7JqVBZO/MbG380rs2zy0huqvb4tlPQmLd2796VJxjSwirQbI26vC7A==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000/playlist/show
+Completed 302 Found in 71290ms (ActiveRecord: 2.7ms | Allocations: 34203)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:37:05 -0700
+Started GET "/login" for ::1 at 2019-10-25 15:37:05 -0700
+Started GET "/login" for ::1 at 2019-10-25 15:37:05 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 426)
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"4QV0B3BCHUls9q7ETqU6gBxDK9CUKlytOVmJzvJ3RTOgttK6oJheLPFtLLw3KStcf8SPxIis2Sb3bhoDumO2bg==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 0.5ms | Allocations: 216)
+Processing by SessionsController#new as HTML
+Completed 200 OK in 40ms (Views: 39.3ms | ActiveRecord: 0.0ms | Allocations: 17369)
+
+
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 425)
+Completed 200 OK in 58ms (Views: 57.6ms | ActiveRecord: 0.0ms | Allocations: 17758)
+
+
+Completed 200 OK in 79ms (Views: 78.0ms | ActiveRecord: 0.0ms | Allocations: 24703)
+
+
+Started POST "/login" for ::1 at 2019-10-25 15:37:16 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"x3oDh5ptgC6zw+cPHOFgVNqd6fulsTWja9jeJsXNk+mGyaU6SrfDSy5YZXdlbXGIuRpN77k3sCil703rjdlgtA==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1535)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms | Allocations: 3603)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    3: <div class="row justify-content-center">
+    4: <h1>Playlist Name</h1>
+    5:  <div class="col-md-6 col-md-offset-3">
+    6:   <%= form_for(@playlist, url: createPlaylist_path) do |f| %>
+    7: 
+    8:      <%= f.text_field :name, class: "form-control" %>
+    9:      <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+  
+app/views/playlist/new.html.erb:6
+Started POST "/login" for ::1 at 2019-10-25 15:37:36 -0700
+Processing by PlaylistController#new as HTML
+  Parameters: {"authenticity_token"=>"x3oDh5ptgC6zw+cPHOFgVNqd6fulsTWja9jeJsXNk+mGyaU6SrfDSy5YZXdlbXGIuRpN77k3sCil703rjdlgtA==", "session"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  Rendering playlist/new.html.erb within layouts/application
+  Rendered playlist/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 539)
+Completed 200 OK in 1072ms (Views: 1070.0ms | ActiveRecord: 0.0ms | Allocations: 1371854)
+
+
+Started POST "/createPlaylist" for ::1 at 2019-10-25 15:37:39 -0700
+Processing by PlaylistController#create as HTML
+  Parameters: {"authenticity_token"=>"C2NZWXN8P46sqvhLrz4TIN9psI5lM/4WhvRjudsuvdBK0P/ko6Z86zExejPWsgL8vO4Umnm1e51Iw/B0kzpOjQ==", "playlist"=>{"name"=>"dopeness"}, "commit"=>"Create my Playlist"}
+Redirected to http://localhost:3000/playlist/show
+Completed 302 Found in 18ms (ActiveRecord: 3.3ms | Allocations: 6017)
+
+
+Started GET "/playlist/show" for ::1 at 2019-10-25 15:37:39 -0700
+Processing by PlaylistController#show as HTML
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms | Allocations: 951)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Playlist without an ID):
+  
+app/controllers/playlist_controller.rb:6:in `show'
