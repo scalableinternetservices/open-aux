@@ -5374,3 +5374,248 @@ Completed 200 OK in 7198ms (Views: 7197.3ms | ActiveRecord: 0.0ms | Allocations:
 Completed 200 OK in 2711ms (Views: 2710.1ms | ActiveRecord: 0.0ms | Allocations: 1411783)
 
 
+Started GET "/" for ::1 at 2019-10-25 14:45:37 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 40ms (Views: 38.2ms | ActiveRecord: 0.0ms | Allocations: 9291)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:47:16 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 1.3ms | Allocations: 86)
+Completed 200 OK in 44ms (Views: 41.6ms | ActiveRecord: 0.0ms | Allocations: 9986)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:47:51 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 1.6ms | Allocations: 86)
+Completed 200 OK in 1460ms (Views: 1456.1ms | ActiveRecord: 0.0ms | Allocations: 1409709)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:48:43 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.8ms | Allocations: 91)
+Completed 200 OK in 38ms (Views: 34.2ms | ActiveRecord: 0.0ms | Allocations: 10022)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:50:09 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 1497ms (Views: 1495.2ms | ActiveRecord: 0.0ms | Allocations: 1409262)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:50:19 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 1449ms (Views: 1445.9ms | ActiveRecord: 0.0ms | Allocations: 1409278)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:50:27 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 1428ms (Views: 1426.6ms | ActiveRecord: 0.0ms | Allocations: 1409670)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:50:33 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 38ms (Views: 36.6ms | ActiveRecord: 0.0ms | Allocations: 9336)
+
+
+Started GET "/" for ::1 at 2019-10-25 14:50:38 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 1518ms (Views: 1515.7ms | ActiveRecord: 0.0ms | Allocations: 1409271)
+
+
+Started GET "/" for ::1 at 2019-10-25 15:02:45 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 1.3ms | Allocations: 150)
+Completed 200 OK in 31ms (Views: 27.5ms | ActiveRecord: 0.0ms | Allocations: 10057)
+
+
+Started GET "/" for ::1 at 2019-10-25 15:03:24 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 1.4ms | Allocations: 139)
+Completed 200 OK in 45ms (Views: 40.4ms | ActiveRecord: 0.0ms | Allocations: 10033)
+
+
+Started GET "/" for ::1 at 2019-10-25 15:03:31 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 2.7ms | Allocations: 139)
+Completed 200 OK in 57ms (Views: 53.3ms | ActiveRecord: 0.0ms | Allocations: 10042)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:03:36 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.0ms | Allocations: 669)
+Completed 200 OK in 49ms (Views: 44.4ms | ActiveRecord: 0.0ms | Allocations: 10545)
+
+
+Started GET "/" for ::1 at 2019-10-25 15:05:45 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.7ms | Allocations: 184)
+Completed 200 OK in 20ms (Views: 17.5ms | ActiveRecord: 0.0ms | Allocations: 10089)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:05:46 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 669)
+Completed 200 OK in 52ms (Views: 48.6ms | ActiveRecord: 0.0ms | Allocations: 10565)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:05:49 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 425)
+Completed 200 OK in 44ms (Views: 42.1ms | ActiveRecord: 0.0ms | Allocations: 9718)
+
+
+Started GET "/join" for ::1 at 2019-10-25 15:09:16 -0700
+Processing by GuestsController#new as HTML
+  Rendering guests/new.html.erb within layouts/application
+  Rendered guests/new.html.erb within layouts/application (Duration: 0.3ms | Allocations: 181)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.0ms | Allocations: 10411)
+
+
+Started GET "/join" for ::1 at 2019-10-25 15:16:43 -0700
+Processing by GuestsController#new as HTML
+  Rendering guests/new.html.erb within layouts/application
+  Rendered guests/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 97)
+Completed 200 OK in 43ms (Views: 40.2ms | ActiveRecord: 0.0ms | Allocations: 10318)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:16:53 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.1ms | Allocations: 670)
+Completed 200 OK in 20ms (Views: 18.0ms | ActiveRecord: 0.0ms | Allocations: 10500)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:16:58 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1287)
+Completed 200 OK in 86ms (Views: 21.6ms | ActiveRecord: 34.1ms | Allocations: 16834)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:17:01 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 433)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.0ms | Allocations: 9746)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:21:30 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1095)
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 0.0ms | Allocations: 11351)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:23:49 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 816)
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.0ms | Allocations: 10138)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:24:13 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1075)
+Completed 200 OK in 37ms (Views: 34.4ms | ActiveRecord: 0.0ms | Allocations: 11325)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:24:48 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 3.9ms | Allocations: 813)
+Completed 200 OK in 40ms (Views: 37.4ms | ActiveRecord: 0.0ms | Allocations: 10145)
+
+
+Started GET "/signup" for ::1 at 2019-10-25 15:25:22 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 4.8ms | Allocations: 808)
+Completed 200 OK in 1497ms (Views: 1494.1ms | ActiveRecord: 0.0ms | Allocations: 1410903)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:26:05 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 7.3ms | Allocations: 669)
+Completed 200 OK in 60ms (Views: 57.7ms | ActiveRecord: 0.0ms | Allocations: 10912)
+
+
+Started GET "/" for ::1 at 2019-10-25 15:26:50 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 1.6ms | Allocations: 189)
+Completed 200 OK in 56ms (Views: 52.8ms | ActiveRecord: 0.0ms | Allocations: 10103)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:26:52 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 5.1ms | Allocations: 658)
+Completed 200 OK in 60ms (Views: 56.8ms | ActiveRecord: 0.0ms | Allocations: 10548)
+
+
+Started GET "/join" for ::1 at 2019-10-25 15:26:55 -0700
+Processing by GuestsController#new as HTML
+  Rendering guests/new.html.erb within layouts/application
+  Rendered guests/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 96)
+Completed 200 OK in 49ms (Views: 45.7ms | ActiveRecord: 0.0ms | Allocations: 9967)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:27:01 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 430)
+Completed 200 OK in 55ms (Views: 49.5ms | ActiveRecord: 0.0ms | Allocations: 9733)
+
+
+Started GET "/join" for ::1 at 2019-10-25 15:27:04 -0700
+Processing by GuestsController#new as HTML
+  Rendering guests/new.html.erb within layouts/application
+  Rendered guests/new.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 43ms (Views: 41.0ms | ActiveRecord: 0.0ms | Allocations: 9295)
+
+
+Started GET "/" for ::1 at 2019-10-25 15:27:22 -0700
+Processing by ApplicationController#home as HTML
+  Rendering application/home.html.erb within layouts/application
+  Rendered application/home.html.erb within layouts/application (Duration: 0.4ms | Allocations: 44)
+Completed 200 OK in 39ms (Views: 36.6ms | ActiveRecord: 0.0ms | Allocations: 9332)
+
+
+Started GET "/login" for ::1 at 2019-10-25 15:27:24 -0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 422)
+Completed 200 OK in 49ms (Views: 47.4ms | ActiveRecord: 0.0ms | Allocations: 9733)
+
+
+Started GET "/join" for ::1 at 2019-10-25 15:27:30 -0700
+Processing by GuestsController#new as HTML
+  Rendering guests/new.html.erb within layouts/application
+  Rendered guests/new.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 40ms (Views: 36.9ms | ActiveRecord: 0.0ms | Allocations: 9300)
+
+
