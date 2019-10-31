@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'playlist/show'
   get 'guests/new'
   get 'sessions/new'
   #get 'users/new'
@@ -7,9 +8,13 @@ Rails.application.routes.draw do
 
   #login
   get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
+  # post   '/login',   to: 'sessions#create'
+  post     '/login', to: 'playlist#new'
   delete '/logout',  to: 'sessions#destroy'
 
+  #playlist
+  post    '/createPlaylist',   to: 'playlist#create'
+  resources :playlist
   #guest
   get    '/join',    to: 'guests#new'
 
