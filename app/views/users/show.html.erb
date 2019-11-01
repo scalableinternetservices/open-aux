@@ -1,1 +1,14 @@
-<%= @user.name %>, <%= @user.email %>
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <%= @user.name %>, <%= @user.email %>
+        <br />
+
+        <h2>Redirecting to login page...</h2>
+
+        <script>
+            var delay = 1000;
+            setTimeout(function(){ window.location = "/login"; }, delay);
+        </script>
+    </body>
+</html>
