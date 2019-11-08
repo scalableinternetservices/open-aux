@@ -1,4 +1,9 @@
 <div class="form-wrapper">
+
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-danger"><%= message %></div>
+  <% end %>
+
   <h1>Log in</h1>
 
   <div class="row">
