@@ -26,10 +26,14 @@ class PlaylistController < ApplicationController
     render 'get_playlist_key'
   end
 
+  #req: :key, :name
+  def decrypt_key
+    @hashed_id = BCrypt::Password.new(params[:key])
+    session[:name] = params[:name]
+    #redirect_to playlist_mainpage
+
   private
     def playlist_params
       params.require(:playlist).permit(:name)
     end
 end
-
-
