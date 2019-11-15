@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   #playlist
-  get '/playlist',   to: 'playlist#new'
-  post    '/createPlaylist',   to: 'playlist#create'
+  get   '/playlist',   to: 'playlist#new'
+  post  '/playlist',   to: 'playlist#create'
+  get   '/playlist/get-key', to:'playlist#get_playlist_key'
   resources :playlist
   #guest
   get    '/join',    to: 'guests#new'

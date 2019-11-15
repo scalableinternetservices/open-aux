@@ -3,9 +3,9 @@
 <div class="row justify-content-center">
 <h1>Playlist Name</h1>
  <div class="col-md-6 col-md-offset-3">
-  <%= form_for(@playlist, url: createPlaylist_path) do |f| %>
+  <%= form_for(@playlist, url: playlist_path) do |f| %>
 
-     <%= f.text_field :name, class: "form-control" %>
+     <%= f.text_field :name, class: "form-control", method: :post %>
      <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
     <% end %>
  </div>
