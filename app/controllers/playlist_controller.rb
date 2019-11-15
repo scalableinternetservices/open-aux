@@ -26,11 +26,20 @@ class PlaylistController < ApplicationController
     render 'get_playlist_key'
   end
 
+  def get_songs
+    #$2a$12$WLdfEmz4.vruvFQS7RU8weHZuzscgdf5TceVD4wm.L0uH9jHzAkWq
+    @hashed_id = session[:hashed_id]
+    @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
+
+    render json: {res: @songs}
+  end
+
   #req: :key, :name
   def decrypt_key
     @hashed_id = BCrypt::Password.new(params[:key])
     session[:name] = params[:name]
     #redirect_to playlist_mainpage
+  end
 
   private
     def playlist_params
