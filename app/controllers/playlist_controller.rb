@@ -8,7 +8,6 @@ class PlaylistController < ApplicationController
   def create
     @playlist = Playlist.new(name: playlist_params[:name], userId: session[:user_id])
     @playlist.save
-    debugger
     session[:playlistId] = playlist.id
     redirect_to @playlist
   end 
