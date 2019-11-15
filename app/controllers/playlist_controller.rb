@@ -23,6 +23,7 @@ class PlaylistController < ApplicationController
   # guest can then decode that and access the playlist w/ the hashed_id
   def get_playlist_key
     @key = BCrypt::Password.new(session[:playlist_hashed_id])
+    puts @key
     render 'get_playlist_key'
   end
 
