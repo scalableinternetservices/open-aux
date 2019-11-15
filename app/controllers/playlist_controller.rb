@@ -6,10 +6,10 @@ class PlaylistController < ApplicationController
     @playlist = Playlist.find(params[:id])
   end 
   def create
-    @playlist = Playlist.new(name: playlist_params[:name], userId: session[:user_id])
-    @playlist.save
-    debugger
-    session[:playlistId] = playlist.id
+    @playlist = Playlist.create(name: playlist_params[:name], userId: session[:user_id])
+    puts('playlistid:', @playlist.id)
+    session[:playlistId] = @playlist.id
+    puts('session', session[:playlistId])
     redirect_to @playlist
   end 
 

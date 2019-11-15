@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   #guest
   get    '/join',    to: 'guests#new'
 
+  #song
+  get '/search', to: 'song#search'
+  post '/song', to: 'song#create'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"
   resources :users
