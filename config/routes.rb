@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   #song
   get '/search', to: 'song#search'
+  get '/searchResult', to: 'song#show'
+  # get '/searchResults', to: 'song#'
   post '/song', to: 'song#create'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -12,10 +12,15 @@ class SongController < ApplicationController
     PlaylistSong.create(song_id: @song.id, playlist_id: session[:playlistId])
   end
 
+  def show
+    @trackList = []
+    render 'show'
+  end
+
   def search
-    @trackList = helpers.getSongsFromAPI('wanna know')
+    @trackList = helpers.getSongsFromAPI(params[:q])
     #@trackList = helpers.getSongsFormAPI(search_params[:name])
-    render 'search'
+    render 'show'
   end
 
 end
