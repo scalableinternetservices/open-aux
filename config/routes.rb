@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   resources :playlist
 
   #guest
-  get   '/join',    to: 'guests#new'
+  get    '/join',    to: 'guests#new'
+  post   '/linking', to: 'guests#change'
 
   #song
   get '/search', to: 'song#search'
