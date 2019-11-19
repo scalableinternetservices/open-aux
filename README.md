@@ -12,11 +12,7 @@ Team Member Name:
 
 4. David Kim (Github: davidkim0228)
 
-  
-
 Our team attends 2pm section.
-
-  
 
 Open-aux is a "Real time live playlist. Have a host maintain a playlist.
 
