@@ -1,5 +1,13 @@
 <tbody>
 
+
+<%= form_with(url: "/search", method: "get", local: true) do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+    <% trackList = [] if trackList == nil %>
     <% @trackList.each do |item|%>
       <div>
         <% item.artists.each do |aristObj|  %>  
@@ -8,6 +16,7 @@
             <%= hidden_field_tag(:name, item.name) %>
             <%= hidden_field_tag(:artist, aristObj.name) %>
             <%= submit_tag(item.name + " - " + aristObj.name) %>
+
           <% end %>
         <% end %>
       </div>

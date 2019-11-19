@@ -15,16 +15,30 @@ class PlaylistController < ApplicationController
     hashed_id = BCrypt::Password.create(@playlist.id)
     @playlist[:hashed_id] = hashed_id
     @playlist.save()
-    session[:playlist_hashed_id] = @playlist.hashed_id
-    render "bogus_landing_page"
+    session[:hashed_id] = @playlist.hashed_id
+    render "show"
   end 
 
   # returns a hashed value of the playlist's hashed_id
   # guest can then decode that and access the playlist w/ the hashed_id
   def get_playlist_key
-    @key = BCrypt::Password.new(session[:playlist_hashed_id])
-    puts @key
-    render 'get_playlist_key'
+    @key = BCrypt::Password.new(session[:hashed_id])
+    render json: {key: @key}
+  end
+
+  def get_songs
+    #$2a$12$WLdfEmz4.vruvFQS7RU8weHZuzscgdf5TceVD4wm.L0uH9jHzAkWq
+    @hashed_id = session[:hashed_id]
+    @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
+
+    render json: {res: @songs}
+  end
+
+  #req: :key, :name
+  def decrypt_key
+    @hashed_id = BCrypt::Password.new(params[:key])
+    session[:name] = params[:name]
+    #redirect_to playlist_mainpage
   end
 
   private
@@ -32,5 +46,3 @@ class PlaylistController < ApplicationController
       params.require(:playlist).permit(:name)
     end
 end
-
-
