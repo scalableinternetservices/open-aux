@@ -17,6 +17,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_playlists
+    @playlists = Playlist.where(userId: session[:user_id])
+    render json: {res: @playlists}
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password,

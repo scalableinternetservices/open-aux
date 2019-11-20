@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #get 'users/new'
   get '/signup', to:'users#new'
   post '/signup', to: 'users#create'
-
+  get '/user-playlists', to: 'users#user_playlists'
   #login
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
