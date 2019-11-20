@@ -1,3 +1,65 @@
-<%= @playlist.name %>
-
-
+<html>
+    <body>
+        <div class="form-wrapper">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1> Playlist Name: <%= @playlist.name %> </h1>
+                    <div class="search-queue">
+                        <%= form_with(url: "", method: "post") do %>
+                            <%= label_tag(:query, "Search queue:") %>
+                            <%= text_field_tag(:query)%>
+                    
+                            <%= submit_tag("Search") %>
+                        <% end %>
+                    </div><br>
+                    <h2><u>Queue</u></h2>
+                    <div class="queue-list">
+                        <div class="add-song">
+                            <%= link_to "Add Song", "/searchResult", :class => "btn btn-primary" %>
+                        </div>
+                        <div class="each-song">
+                            <div>
+                                <h3>Taylor Swift Song</h3>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-success">Upvote (2)</button>
+                                <button type="button" class="btn btn-danger">Downvote (1)</button>
+                            </div>
+                        </div>
+                        <div class="each-song">
+                            <div>
+                                <h3>Fuckboi Song</h3>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-success">Upvote (3)</button>
+                                <button type="button" class="btn btn-danger">Downvote (0)</button>
+                            </div>
+                        </div>
+                        <div class="each-song">
+                            <div>
+                                <h3>Old Town Road</h3>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-success">Upvote (2)</button>
+                                <button type="button" class="btn btn-danger">Downvote (4)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                $.ajax({
+                    url: "/playlist/get-songs",
+                    method: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data.res);
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>

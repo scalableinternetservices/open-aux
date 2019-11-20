@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   #playlist
   get   '/playlist',   to: 'playlist#new'
   post  '/playlist',   to: 'playlist#create'
+  get   '/dashboard',  to: 'playlist#show'
   get   '/playlist/get-key', to:'playlist#get_playlist_key'
   get   'playlist/decrypt-key', to:'playlist#decrypt_key'
   get   'playlist/get-songs', to:'playlist#get_songs'
