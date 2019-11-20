@@ -17,6 +17,19 @@
       </div>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
       <script type="text/javascript">
+         var handleClick = hashed_id => {
+            console.log(hashed_id);
+
+            $.ajax({
+               url: "/playlist/route-playlist",
+               method: "POST",
+               data: hashed_id,
+               success: function(data) {
+                  console.log("POST request successfully made!");
+               }
+            })
+         }
+      
          $(document).ready(function(){   
             $.ajax({
                url: "/user-playlists",
@@ -32,11 +45,8 @@
                   } 
 
                   for (var i = 0; i < data.res.length; i++) {
-                     function handleClick() {
-                        console.log("hello");
-                     }
-
-                     htmlString += `<button class="btn-lg btn-primary" onClick="handleClick()">${data.res[i].name}</button><br><br>`;
+                     var functionString = `(function(){handleClick("${data.res[i].hashed_id}");})();`;
+                     htmlString += `<button class="btn-lg btn-primary" onClick=${functionString}>${data.res[i].name}</button><br><br>`;
                   }
 
                   $(".user-playlists").append(htmlString);
