@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get   '/playlist/get-key', to:'playlist#get_playlist_key'
   get   'playlist/decrypt-key', to:'playlist#decrypt_key'
   get   'playlist/get-songs', to:'playlist#get_songs'
+  post  'playlist/route-playlist', to: 'playlist#route_playlist'
   resources :playlist
 
   #guest

@@ -16,28 +16,32 @@
          </div>
       </div>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-      <script>
-         $(document).ready(function(){
-               $.ajax({
-                  url: "/user-playlists",
-                  method: "GET",
-                  dataType: "json",
-                  success: function(data) {
-                     var htmlString = "";
+      <script type="text/javascript">
+         $(document).ready(function(){   
+            $.ajax({
+               url: "/user-playlists",
+               method: "GET",
+               dataType: "json",
+               success: function(data) {
+                  var htmlString = "";
 
-                     if (data.res.length > 0) {
-                        htmlString += "<h2>Current playlists:</h2>";
-                     } else {
-                        htmlString += "<h2>No playlists available.</h2>";
+                  if (data.res.length > 0) {
+                     htmlString += "<h2>Current playlists:</h2>";
+                  } else {
+                     htmlString += "<h2>No playlists available.</h2>";
+                  } 
+
+                  for (var i = 0; i < data.res.length; i++) {
+                     function handleClick() {
+                        console.log("hello");
                      }
 
-                     for (var i = 0; i < data.res.length; i++) {
-                        htmlString += `<button class="btn-lg btn-primary">${data.res[i].name}</button><br><br>`;
-                     }
-
-                     $(".user-playlists").append(htmlString);
+                     htmlString += `<button class="btn-lg btn-primary" onClick="handleClick()">${data.res[i].name}</button><br><br>`;
                   }
-               });
+
+                  $(".user-playlists").append(htmlString);
+               }
+            });
          })
       </script>
    </body>

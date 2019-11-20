@@ -41,6 +41,12 @@ class PlaylistController < ApplicationController
     #redirect_to playlist_mainpage
   end
 
+  def route_playlist
+    @hashed_id = params[:hashed_id]
+    session[:hashed_id] = @hashed_id
+    redirect_to "/dashboard"
+  end
+
   private
     def playlist_params
       params.require(:playlist).permit(:name)
