@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   get '/searchResult', to: 'song#show'
   # get '/searchResults', to: 'song#'
   post '/song', to: 'song#create'
+  post '/song/up-vote', to: 'song#up_vote'
+  post '/song/down-vote', to: 'song#down_vote'
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"
