@@ -22,4 +22,20 @@ class SongController < ApplicationController
     render 'show'
   end
 
+  def up_vote
+    if @song = Song.find(params[:s_id].to_f)
+      @song.update(vote_count: (@song.vote_count + 1))
+      render json: { res: @song }
+    else
+      render json: {
+        error: "Song with s_id: #{params[:s_id]} not found"
+      }, status: :not_found
+    end
+  end
+
+  def down_vote
+    @song = Song.find(params[:s_id].to_f)
+    @song.update(vote_count: (@song.vote_count - 1))
+    render json: {res: @song}
+  end
 end
