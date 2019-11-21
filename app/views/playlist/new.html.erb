@@ -21,8 +21,8 @@
             console.log(hashed_id);
 
             $.ajax({
-               url: "/playlist/route-playlist",
-               method: "POST",
+               url: "/playlist/route-playlist?hashed_id=",
+               type: "POST",
                data: hashed_id,
                success: function(data) {
                   console.log("POST request successfully made!");
