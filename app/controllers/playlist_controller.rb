@@ -5,7 +5,7 @@ class PlaylistController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.find(params[:id])
+    @playlist = Playlist.where(hashed_id=session[hashed_id])
   end 
 
   # store the hashed value of the playlist_id into the playlist model
@@ -39,6 +39,12 @@ class PlaylistController < ApplicationController
     @hashed_id = BCrypt::Password.new(params[:key])
     session[:name] = params[:name]
     #redirect_to playlist_mainpage
+  end
+
+  def route_playlist
+    @hashed_id = params[:hashed_id]
+    session[:hashed_id] = @hashed_id
+    redirect_to "/dashboard"
   end
 
   private

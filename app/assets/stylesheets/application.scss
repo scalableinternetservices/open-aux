@@ -35,3 +35,34 @@
   height: 12vh;
   justify-content: space-between;
 }
+
+.search-queue {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  width: 40vw;
+}
+
+.add-song {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.each-song {
+  display: flex;
+  flex-direction: row;
+  border: 5px solid black;
+  border-radius: 20px;
+  width: 30vw;
+  height: 7vh;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
