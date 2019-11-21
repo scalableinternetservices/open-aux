@@ -1,3 +1,46 @@
-<%= @playlist.name %>
+<html>
+    <body>
+        <div class="form-wrapper">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1> Playlist Name: <%= @playlist.name %> </h1>
+                    <div class="search-queue">
+                        <%= form_with(url: "", method: "post") do %>
+                            <%= label_tag(:query, "Search queue:") %>
+                            <%= text_field_tag(:query)%>
+                    
+                            <%= submit_tag("Search") %>
+                        <% end %>
+                    </div><br>
+                    <h2><u>Queue</u></h2>
+                    <div class="queue-list">
+                        <div class="add-song">
+                            <%= link_to "Add Song", "/searchResult", :class => "btn btn-primary" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                $.ajax({
+                    url: "/playlist/get-songs",
+                    method: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data.res);
 
+                        var htmlString = "";
 
+                        for (var i = 0; i < data.res.length; i++) {
+                            htmlString += `<div class="each-song"><div><h4>${data.res[i].name}</h4></div><div><button type="button" class="btn btn-success">Upvote (${data.res[i].vote_count})</button><button type="button" class="btn btn-danger">Downvote (${data.res[i].vote_count})</button></div></div>`;
+                        }
+
+                        $(".queue-list").append(htmlString);
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>
