@@ -5,7 +5,7 @@ class PlaylistController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.find(params[:id])
+    @playlist = Playlist.where(hashed_id=session[hashed_id])
   end 
 
   # store the hashed value of the playlist_id into the playlist model
