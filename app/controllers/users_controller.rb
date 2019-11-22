@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def new
-      @user = User.new
+      @user = User.new user_params
   end
 
   def create
@@ -14,6 +14,16 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = "Signup Error!"
       render 'new'
+    end
+  end
+
+  def update
+    if params[:error]
+      puts 'LOGIN ERROR', params
+      redirect_to 'http://localhost:3000/login'
+    else
+      helpers.reqAccessToken(params)
+      redirect_to :controller => 'playlist', :action => 'new'
     end
   end
 

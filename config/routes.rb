@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   # get '/searchResults', to: 'song#'
   post '/song', to: 'song#create'
 
+  # get '/auth/spotify', to: redirect('https://accounts.spotify.com/authorize')
+  get '/auth/spotify/callback', to: 'users#update'
+
+  # get '/user/auth', to: 'users#userData'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"
   resources :users

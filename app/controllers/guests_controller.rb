@@ -6,6 +6,6 @@ class GuestsController < ApplicationController
     # debugger
     @hashed_id = BCrypt::Password.new(params[:key])
     session[:playlist_hashed_id] = @hashed_id
-    render 'new'
+    render 'search'
   end
 end

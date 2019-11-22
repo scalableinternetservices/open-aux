@@ -2,6 +2,9 @@ require 'bcrypt'
 class PlaylistController < ApplicationController
   def new
     @playlist = Playlist.new
+    # session[:credentials] = request.env['omniauth.auth'].credentials
+    # debugger
+    # request.env['omniauth.auth'].uid
   end
 
   def show

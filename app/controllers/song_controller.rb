@@ -1,7 +1,19 @@
 
 class SongController < ApplicationController
+
+    # player.play_track('4398fd8d756dfb8a0afb14c3790b5fa47f0f8003', "spotify:track:" + '6DCZcSspjsKoFjzjrWoCdn')
+    # session[:player] = userInfo.player
+
   def new
     @song = Song.new
+  end
+
+  def play 
+    helpers.playSongFromAPI(params[:spotify_id])
+  end
+
+  def pause
+    pauseSongFromAPI(params[:spotify_id])
   end
   
   def create
