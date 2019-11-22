@@ -6,6 +6,12 @@ class PlaylistController < ApplicationController
 
   def show
     @playlist = Playlist.where(hashed_id=session[hashed_id])
+    @hashed_id = session[:hashed_id]
+    if params[:search]
+      @songs = Song.where("lower(name) LIKE ? OR lower(artist) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+    else
+      @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+    end
   end 
 
   # store the hashed value of the playlist_id into the playlist model

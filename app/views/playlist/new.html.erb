@@ -24,7 +24,7 @@
                headers: {
                   'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                }
-            });
+            })
 
             $.ajax({
                url: `/playlist/route-playlist?hashed_id=${hashed_id}`,
