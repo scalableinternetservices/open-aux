@@ -9,7 +9,7 @@ module SessionsHelper
     query = { 
       client_id: Rails.application.credentials.spotify[:client_id], 
       response_type: 'code',
-      scope: %w(playlist-read-private user-read-private user-read-email).join(' '),
+      scope: "playlist-read-private user-read-private user-read-email streaming user-modify-playback-state",
       redirect_uri: 'http://localhost:3000/auth/spotify/callback',
       show_dialog: true
       }

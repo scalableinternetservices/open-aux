@@ -44,6 +44,12 @@ class PlaylistController < ApplicationController
     #redirect_to playlist_mainpage
   end
 
+  def dashboard
+    # debugger
+    @accessToken = User.find_by(id: session[:userId]).accessToken
+    render 'dashboard'
+  end
+
   private
     def playlist_params
       params.require(:playlist).permit(:name)

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get   '/playlist/get-key', to:'playlist#get_playlist_key'
   get   'playlist/decrypt-key', to:'playlist#decrypt_key'
   get   'playlist/get-songs', to:'playlist#get_songs'
+  get   'playlist/dashboard', to: 'playlist#dashboard'
   resources :playlist
 
   #guest
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
 
   # get '/auth/spotify', to: redirect('https://accounts.spotify.com/authorize')
   get '/auth/spotify/callback', to: 'users#update'
+
 
   # get '/user/auth', to: 'users#userData'
 
