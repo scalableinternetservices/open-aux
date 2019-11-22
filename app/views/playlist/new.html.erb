@@ -1,5 +1,19 @@
 <html>
    <body>
+     <% if logged_in? %>
+       <nav class="navbar navbar-light bg-light">
+         <a class="navbar-brand">OpenAUX</a>
+         <a href="/logout" class="button">Logout</a>
+       </nav>
+     <% else %>
+       <nav class="navbar navbar-light bg-light">
+         <a class="navbar-brand">OpenAUX</a>
+         <form class="form-inline">
+           <a href="/login" class="button">Login</a>
+         </form>
+       </nav>
+     <% end %>
+
       <% provide(:title, "playlist") %>
 
       <div class="row justify-content-center">
@@ -34,8 +48,8 @@
                }
             })
          }
-      
-         $(document).ready(function(){   
+
+         $(document).ready(function(){
             $.ajax({
                url: "/user-playlists",
                method: "GET",
@@ -47,7 +61,7 @@
                      htmlString += "<h2>Current playlists:</h2>";
                   } else {
                      htmlString += "<h2>No playlists available.</h2>";
-                  } 
+                  }
 
                   for (var i = 0; i < data.res.length; i++) {
                      var functionString = `(function(){handleClick("${data.res[i].hashed_id}");})();`;

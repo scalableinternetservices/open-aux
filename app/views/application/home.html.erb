@@ -1,6 +1,19 @@
 <!DOCTYPE HTML>
 <html>
     <body>
+      <% if logged_in? %>
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand">OpenAUX</a>
+          <a href="/logout" class="button">Logout</a>
+        </nav>
+      <% else %>
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand">OpenAUX</a>
+          <form class="form-inline">
+            <a href="/login" class="button">Login</a>
+          </form>
+        </nav>
+      <% end %>
         <div class="home-wrapper">
             <div class="button-wrapper">
                 <div class="btn btn-primary btn-lg">
