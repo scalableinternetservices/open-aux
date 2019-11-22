@@ -5,11 +5,9 @@
                 <div class="col-md-6 col-md-offset-3">
                     <h1> Playlist Name: <%= @playlist.name %> </h1>
                     <div class="search-queue">
-                        <%= form_with(url: "", method: "post") do %>
-                            <%= label_tag(:query, "Search queue:") %>
-                            <%= text_field_tag(:query)%>
-                    
-                            <%= submit_tag("Search") %>
+                        <%= form_tag "/dashboard", :method => "get" do %>
+                            <%= text_field_tag :search, params[:search] %>
+                            <%= submit_tag "Search" %>
                         <% end %>
                     </div><br>
                     <h2><u>Queue</u></h2>
@@ -17,30 +15,61 @@
                         <div class="add-song">
                             <%= link_to "Add Song", "/searchResult", :class => "btn btn-primary" %>
                         </div>
+                        <% for song in @songs %>
+                            <div class="each-song">
+                                <div>
+                                    <h4><%= song.name %></h4>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-success" onClick="(function(){handleUpVote(<%= song.id %>);})();">Upvote</button>
+                                    <button type="button" class="btn btn-danger" onClick="(function(){handleDownVote(<%= song.id %>);})();">Downvote</button>
+                                    <button type="button" class="btn btn-info"><%= song.vote_count %></button>
+                                </div>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
             </div>
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function(){
-                $.ajax({
-                    url: "/playlist/get-songs",
-                    method: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data.res);
+        <script type="text/javascript">
+            var handleUpVote = s_id => {
+                console.log(s_id);
 
-                        var htmlString = "";
-
-                        for (var i = 0; i < data.res.length; i++) {
-                            htmlString += `<div class="each-song"><div><h4>${data.res[i].name}</h4></div><div><button type="button" class="btn btn-success">Upvote (${data.res[i].vote_count})</button><button type="button" class="btn btn-danger">Downvote (${data.res[i].vote_count})</button></div></div>`;
-                        }
-
-                        $(".queue-list").append(htmlString);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     }
-                });
-            })
+                })
+
+                $.ajax({
+                    url: `/song/up-vote?s_id=${s_id}`,
+                    type: "POST",
+                    success: function(data) {
+                        console.log("Upvote request successfully made!");
+                        window.location.reload();
+                    }
+                })
+            }
+
+            var handleDownVote = s_id => {
+                console.log(s_id);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+
+                $.ajax({
+                    url: `/song/down-vote?s_id=${s_id}`,
+                    type: "POST",
+                    success: function(data) {
+                        console.log("Downvote request successfully made!");
+                        window.location.reload();
+                    }
+                })
+            }
         </script>
     </body>
 </html>
