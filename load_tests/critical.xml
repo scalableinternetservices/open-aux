@@ -7,9 +7,8 @@
   </clients>
 
   <!-- Server side setup -->
-    <!-- may need to change dependent on server host-->
   <servers>
-    <server host="tester1.bu3hn7we2f.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host="http://openaux-demo.bu3hn7we2f.us-west-2.elasticbeanstalk.com/" port="80" type="tcp"></server>
   </servers>
 
   <load>
@@ -22,7 +21,6 @@
     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-<
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
@@ -32,10 +30,10 @@
    <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase>
+<!--
    <arrivalphase phase="7" duration="30" unit="second">
      <users arrivalrate="64" unit="second"></users>
    </arrivalphase>
-<!--
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
@@ -60,36 +58,110 @@
   <sessions>
     <session name="http-example" probability="100" type="ts_http">
 
-      <!-- start out at the dashboard. -->
+      <!-- Start at root -->
       <request>
         <http url='/' version='1.1' method='GET'></http>
       </request>
 
-      <!-- wait for up to 2 seconds, user is looking at home page -->
       <thinktime value="2" random="true"></thinktime>
 
+      <!-- Go to login  -->
+      <request>
+        <http url='/login' version='1.1' method='GET'></http>
+      </request>
 
-      <!-- visit the signup, as a user would do.  -->
+      <!-- Go to signup  -->
       <request>
         <http url='/signup' version='1.1' method='GET'></http>
       </request>
 
-      <!-- wait for up to 2 seconds, user is filling out new community form -->
-      <thinktime value="2" random="true"></thinktime>
 
       <!-- create a random user name -->
       <setdynvars sourcetype="random_number" start="1000" end="9999999">
         <var name="random_user_name" />
       </setdynvars>
 
-      <request><http url='/signup' version='1.1'  contents='user%5Bname%5D=tewst%%_random_user_name&amp;user%5Bemail%5D=test%%_random_user_name%%%5Bgmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Create+my+account' content_type='application/x-www-form-urlencoded' method='POST'>
+      <!-- signup with random user name-->
+      <thinktime value="8" random="true"></thinktime>
+      <request subst="true">
+        <http url='/signup' version='1.1'  contents='user%5Bname%5D=test_%%_random_user_name%%&amp;user%5Bemail%5D=test_%%_random_user_name%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Create+my+account' content_type='application/x-www-form-urlencoded' method='POST'>
         <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
         <http_header name='Accept-Encoding' value='gzip, deflate' />
-        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http></request>
-      <request><http url='/users/1' version='1.1' method='GET'>
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Redirecting back to login page -->
+      <request>
+        <http url='/users/1' version='1.1' method='GET'>
         <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
         <http_header name='Accept-Encoding' value='gzip, deflate' />
-        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http></request>
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <thinktime random='true' value='2'/>
+
+      <request>
+        <http url='/login' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Logging in -->
+      <thinktime random='true' value='5'/>
+
+      <request substr="true">
+        <http url='/login' version='1.1'  contents='session%5Bemail%5D=test_%%_random_user_name%%%40gmail.com&amp;session%5Bpassword%5D=password&amp;commit=Log+in' content_type='application/x-www-form-urlencoded' method='POST'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Go to User's playlist list page -->
+      <request>
+        <http url='/playlist' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Fetch all User's playlists -->
+      <request><http url='/user-playlists' version='1.1' method='GET'>
+        <http_header name='Accept' value='application/json, text/javascript, */*; q=0.01' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' />
+        <http_header name='X-Requested-With' value='XMLHttpRequest' /></http></request>
+
+      <!-- User creates a new playlist -->
+      <thinktime random='true' value='4'/>
+
+      <!-- create a random playlist name -->
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="random_playlist_name" />
+      </setdynvars>
+
+<!--       <request><http url='/login' version='1.1'  contents='session%5Bemail%5D=test%%_random_user_name%%%5Bgmail.com&amp;session%5Bpassword%5D=password&amp;commit=Log+in' content_type='application/x-www-form-urlencoded' method='POST'>
+-->
+<!-- 
+  %5B: [
+  %5D: ]
+  %40: @
+  %20: space
+  &amp: &
+  ???-->
+      <!-- A session variable (hashed_id) should be set here...? -->
+      <request substr="true">
+        <http url='/playlist' version='1.1'  contents='playlist%5Bname%5D=test_%%_random_playlist_name%%&amp;commit=Create+my+Playlist' content_type='application/x-www-form-urlencoded' method='POST'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <request><http url='/playlist/get-songs' version='1.1' method='GET'>
+        <http_header name='Accept' value='application/json, text/javascript, */*; q=0.01' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' />
+        <http_header name='X-Requested-With' value='XMLHttpRequest' /></http></request>
 
     </session>
   </sessions>
