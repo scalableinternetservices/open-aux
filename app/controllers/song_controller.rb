@@ -18,7 +18,7 @@ class SongController < ApplicationController
       @song = Song.create(name: params[:name], vote_count: 0, artist: params[:artist], spotify_id: params[:spotify_id])
       PlaylistSong.create(song_id: @song.id, hashed_id: session[:hashed_id])
     end
-    redirect_to '/dashboard'
+    redirect_to playlist_url
   end
 
   def show
