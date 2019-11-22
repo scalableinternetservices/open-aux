@@ -22,7 +22,45 @@
             </div>
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script>
+        <script type="text/javascript">
+            var handleUpVote = s_id => {
+                console.log(s_id);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+
+                $.ajax({
+                    url: `/song/up-vote?s_id=${s_id}`,
+                    type: "POST",
+                    success: function(data) {
+                        console.log("Upvote request successfully made!");
+                        window.location.reload();
+                    }
+                })
+            }
+
+            var handleDownVote = s_id => {
+                console.log(s_id);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+
+                $.ajax({
+                    url: `/song/down-vote?s_id=${s_id}`,
+                    type: "POST",
+                    success: function(data) {
+                        console.log("Downvote request successfully made!");
+                        window.location.reload();
+                    }
+                })
+            }
+        
             $(document).ready(function(){
                 $.ajax({
                     url: "/playlist/get-songs",
@@ -34,7 +72,10 @@
                         var htmlString = "";
 
                         for (var i = 0; i < data.res.length; i++) {
-                            htmlString += `<div class="each-song"><div><h4>${data.res[i].name}</h4></div><div><button type="button" class="btn btn-success">Upvote (${data.res[i].vote_count})</button><button type="button" class="btn btn-danger">Downvote (${data.res[i].vote_count})</button></div></div>`;
+                            var upvoteString = `(function(){handleUpVote("${data.res[i].id}");})();`;
+                            var downvoteString = `(function(){handleDownVote("${data.res[i].id}");})();`;
+                        
+                            htmlString += `<div class="each-song"><div><h4>${data.res[i].name}</h4></div><div><button type="button" class="btn btn-success" onClick=${upvoteString}>Upvote</button><button type="button" class="btn btn-danger" onClick=${downvoteString}>Downvote</button><button type="button" class="btn btn-info">${data.res[i].vote_count}</button></div></div>`;
                         }
 
                         $(".queue-list").append(htmlString);

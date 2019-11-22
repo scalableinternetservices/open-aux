@@ -20,10 +20,15 @@
          var handleClick = hashed_id => {
             console.log(hashed_id);
 
+            $.ajaxSetup({
+               headers: {
+                  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+               }
+            })
+
             $.ajax({
-               url: "/playlist/route-playlist?hashed_id=",
+               url: `/playlist/route-playlist?hashed_id=${hashed_id}`,
                type: "POST",
-               data: hashed_id,
                success: function(data) {
                   window.location.replace("/dashboard");
                }
