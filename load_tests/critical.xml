@@ -110,7 +110,7 @@
       <!-- Logging in -->
       <thinktime random='true' value='5'/>
 
-      <request substr="true">
+      <request subst="true">
         <http url='/login' version='1.1'  contents='session%5Bemail%5D=test_%%_random_user_name%%%40gmail.com&amp;session%5Bpassword%5D=password&amp;commit=Log+in' content_type='application/x-www-form-urlencoded' method='POST'>
         <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
         <http_header name='Accept-Encoding' value='gzip, deflate' />
@@ -140,17 +140,8 @@
         <var name="random_playlist_name" />
       </setdynvars>
 
-<!--       <request><http url='/login' version='1.1'  contents='session%5Bemail%5D=test%%_random_user_name%%%5Bgmail.com&amp;session%5Bpassword%5D=password&amp;commit=Log+in' content_type='application/x-www-form-urlencoded' method='POST'>
--->
-<!-- 
-  %5B: [
-  %5D: ]
-  %40: @
-  %20: space
-  &amp: &
-  ???-->
       <!-- A session variable (hashed_id) should be set here...? -->
-      <request substr="true">
+      <request subst="true">
         <http url='/playlist' version='1.1'  contents='playlist%5Bname%5D=test_%%_random_playlist_name%%&amp;commit=Create+my+Playlist' content_type='application/x-www-form-urlencoded' method='POST'>
         <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
         <http_header name='Accept-Encoding' value='gzip, deflate' />
@@ -161,8 +152,17 @@
         <http_header name='Accept' value='application/json, text/javascript, */*; q=0.01' />
         <http_header name='Accept-Encoding' value='gzip, deflate' />
         <http_header name='Accept-Language' value='en-US,en;q=0.5' />
-        <http_header name='X-Requested-With' value='XMLHttpRequest' /></http></request>
+        <http_header name='X-Requested-With' value='XMLHttpRequest' /></http>
+      </request>
 
     </session>
   </sessions>
 </tsung>
+
+<!-- 
+  %5B: [
+  %5D: ]
+  %40: @
+  %20: space
+  &amp: &
+  ???-->
