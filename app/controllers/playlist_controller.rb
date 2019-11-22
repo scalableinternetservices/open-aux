@@ -27,10 +27,10 @@ class PlaylistController < ApplicationController
   end
 
   def get_songs
-    #$2a$12$WLdfEmz4.vruvFQS7RU8weHZuzscgdf5TceVD4wm.L0uH9jHzAkWq
+    #puts session[:hashed_id]
     @hashed_id = session[:hashed_id]
     @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
-
+    
     render json: {res: @songs}
   end
 
