@@ -1,5 +1,8 @@
 <tbody>
 
+<% if flash[:notice] %>
+  <div class="alert alert-success">Song successfully added!</div>
+<% end %>
 
 <%= form_with(url: "/search", method: "get", local: true) do %>
   <%= label_tag(:q, "Search for:") %>
@@ -21,4 +24,8 @@
         <% end %>
       </div>
     <% end %>
+    <br>
+    <div>
+      <button type="button" class="btn btn-primary" onClick="(function(){ window.location.replace('/dashboard') })();">Return to Dashboard</button>
+    </div>
 </tbody>

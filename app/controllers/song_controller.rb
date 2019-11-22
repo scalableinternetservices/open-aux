@@ -17,8 +17,9 @@ class SongController < ApplicationController
     if @temp.length == 0
       @song = Song.create(name: params[:name], vote_count: 0, artist: params[:artist], spotify_id: params[:spotify_id])
       PlaylistSong.create(song_id: @song.id, hashed_id: session[:hashed_id])
+      flash.now[:notice] = "Song was added to playlist!"
+      redirect_to playlist_url
     end
-    redirect_to playlist_url
   end
 
   def show
