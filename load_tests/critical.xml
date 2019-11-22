@@ -9,9 +9,8 @@
   <!-- Server side setup -->
     <!-- may need to change dependent on server host-->
   <servers>
-    <server host="ec2-54-148-61-114.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="tester1.bu3hn7we2f.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
-
 
   <load>
     <arrivalphase phase="1" duration="30" unit="second">
@@ -23,7 +22,7 @@
     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-<!--
+<
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
@@ -36,6 +35,7 @@
    <arrivalphase phase="7" duration="30" unit="second">
      <users arrivalrate="64" unit="second"></users>
    </arrivalphase>
+<!--
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
@@ -68,9 +68,10 @@
       <!-- wait for up to 2 seconds, user is looking at home page -->
       <thinktime value="2" random="true"></thinktime>
 
+
       <!-- visit the signup, as a user would do.  -->
       <request>
-        <http url='/signup' version='1.1' method='POST'></http>
+        <http url='/signup' version='1.1' method='GET'></http>
       </request>
 
       <!-- wait for up to 2 seconds, user is filling out new community form -->
@@ -81,72 +82,15 @@
         <var name="random_user_name" />
       </setdynvars>
 
-      <!-- create a user account
-           do we want to remember the userName so we can delete it later? -->
-      <request subst="true">
-        <dyn_variable name="created_user_url" re="[Ll]ocation: (http://.*)\r"/>
-        <dyn_variable name="user_id" re="[Ll]ocation: http://.*/users/(.*)\r"/>
-        <http
-          url='/signup'
-          version='1.1'
-          method='POST'
-          contents='user%5Bname%5D=test%%_random_user_name%%user%5Bemail%5D=test%%_random_user_name%%%5B@gmail.com%5Duser%5Bpassword%5D=password'>
-        </http>
-      </request>
+      <request><http url='/signup' version='1.1'  contents='user%5Bname%5D=tewst%%_random_user_name&amp;user%5Bemail%5D=test%%_random_user_name%%%5Bgmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Create+my+account' content_type='application/x-www-form-urlencoded' method='POST'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http></request>
+      <request><http url='/users/1' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http></request>
 
-      <!-- login as a user would do.  -->
-      <request>
-        <http url='/login' version='1.1' method='PUT'></http>
-      </request>
-
-      <!-- wait for up to 2 seconds, user is fillinf in new submission form -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- create a new submission in the community we just created -->
-      <setdynvars sourcetype="random_number" start="1000" end="9999999">
-        <var name="random_submission_name" />
-      </setdynvars>
-
-      <request subst="true">
-        <dyn_variable name="created_submission_url" re="[Ll]ocation: (http://.*)\r"/>
-        <dyn_variable name="created_submission_id" re="[Ll]ocation: http://.*/submissions/(.*)\r"/>
-        <http
-          url='/submissions'
-          version='1.1'
-          method='POST'
-          contents='submission%5Btitle%5D=link_%%_random_submission_name%%&amp;submission%5Burl%5D=http%3A%2F%2Fwww.article.com%2F%%_random_submission_name%%&amp;submission%5Bcommunity_id%5D=%%_created_community_id%%&amp;commit=Create+Submission'>
-        </http>
-      </request>
-
-      <!-- wait for up to 2 seconds, user decides to delete submission -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- delete the submission we just created -->
-      <!--
-      <request subst="true">
-        <http url="%%_created_submission_url%%" method="DELETE">
-        </http>
-      </request>
-      -->
-      <!-- wait for up to 2 seconds, user decides to delete community -->
-      <thinktime value="2" random="true"></thinktime>
-
-      <!-- Uncomment the following to debug print your dynamic variables  -->
-      <!--
-      <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) ->
-        io:format([126, $p, 126, $n, 126, $n], [DynVars]),
-        ok end.">
-        <var name="dump" />
-      </setdynvars>
-      -->
-
-      <!-- delete the community we created -->
-      <!-- 
-      <request subst="true">
-        <http url="%%_created_community_url%%" method="DELETE">
-        </http>
-      </request>
-      -->
     </session>
   </sessions>
 </tsung>
