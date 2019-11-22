@@ -19,12 +19,28 @@ Open-aux is a "Real time live playlist. Have a host maintain a playlist.
 Have users in the host session be able to add songs to the
 
 group’s playlist."
-
   
 
 # Docs
 
-  
+## DB seeding
+
+run `rake db:seed` to seed and populate the database with sample data. It produces:
+
+.
+├── user_1                 
+│   ├── playlist_1
+│   |   ├── No Guidance (feat. Drake)
+│   |   └── Going Bad (feat. Drake)
+│   ├── playlist_2
+│   |   ├── No Guidance (feat. Drake)
+│   |   └── Going Bad (feat. Drake)
+│   └── playlist_3
+│       └── No Guidance (feat. Drake)
+└── user_2
+    └── playlist_4
+        └── 22
+
 
 ## Models
 
