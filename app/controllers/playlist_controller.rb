@@ -22,6 +22,7 @@ class PlaylistController < ApplicationController
     @playlist[:hashed_id] = hashed_id
     @playlist.save()
     session[:hashed_id] = @playlist.hashed_id
+    @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
     render "show"
   end 
 
