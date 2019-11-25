@@ -148,11 +148,51 @@
         <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
       </request>
 
-      <request><http url='/playlist/get-songs' version='1.1' method='GET'>
-        <http_header name='Accept' value='application/json, text/javascript, */*; q=0.01' />
+      <!-- Enter the song search page -->
+      <request>
+      <http url='/searchResult' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Perform the search -->
+      <request>
+        <http url='/search?q=drake&amp;commit=Search' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Choose & insert the song -->
+      <request>
+        <http url='/song' version='1.1'  contents='spotify_id=5ry2OE6R2zPQFDO85XkgRb&amp;name=Money%20In%20The%20Grave%20(Drake%20ft.%20Rick%20Ross)&amp;artist=Drake&amp;commit=Money%20In%20The%20Grave%20(Drake%20ft.%20Rick%20Ross)%20-%20Drake' content_type='application/x-www-form-urlencoded; charset=UTF-8' method='POST'>
+        <http_header name='Accept' value='text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01' />
         <http_header name='Accept-Encoding' value='gzip, deflate' />
         <http_header name='Accept-Language' value='en-US,en;q=0.5' />
         <http_header name='X-Requested-With' value='XMLHttpRequest' /></http>
+      </request>
+
+      <!-- Go back to dashboard -->
+      <request>
+        <http url='/dashboard' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Logout and return to root page -->
+      <request>
+        <http url='/logout' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+      <request>
+        <http url='/' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
       </request>
 
     </session>
