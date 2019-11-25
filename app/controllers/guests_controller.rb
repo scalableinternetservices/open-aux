@@ -7,6 +7,6 @@ class GuestsController < ApplicationController
     # debugger
     @hashed_id = BCrypt::Password.new(params[:key])
     session[:hashed_id] = @hashed_id
-    redirect_to '/dashboard'
+    redirect_to "/dashboard" and return
   end
 end
