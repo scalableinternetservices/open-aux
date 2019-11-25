@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
+    if logged_in?
+      redirect_to '/playlist'
+    end
   end
 
   def create
@@ -19,4 +22,6 @@ class SessionsController < ApplicationController
     log_out
     redirect_to root_url
   end
+
+
 end
