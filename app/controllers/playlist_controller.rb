@@ -5,6 +5,7 @@ class PlaylistController < ApplicationController
   end
 
   def show
+    @key = BCrypt::Password.new(session[:hashed_id])
     @playlist = Playlist.where(hashed_id=session[hashed_id])
     @hashed_id = session[:hashed_id]
     if params[:search]
@@ -22,6 +23,7 @@ class PlaylistController < ApplicationController
     @playlist[:hashed_id] = hashed_id
     @playlist.save()
     session[:hashed_id] = @playlist.hashed_id
+    @key = BCrypt::Password.new(session[:hashed_id])
     @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
     render "show"
   end 
@@ -44,8 +46,7 @@ class PlaylistController < ApplicationController
   #req: :key, :name
   def decrypt_key
     @hashed_id = BCrypt::Password.new(params[:key])
-    session[:name] = params[:name]
-    #redirect_to playlist_mainpage
+    session[:hashed_id] = @hashed_id
   end
 
   def route_playlist

@@ -17,10 +17,17 @@
         <div class="dashboard-wrapper">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="go-back-playlist">
-                        <%= link_to "Go Back to Playlists", "/playlist", :class => "btn btn-info" %>
-                    </div>
-                    <h1> Playlist Name: <%= @playlist.name %> </h1>
+                    <% if logged_in? %>
+                        <div class="go-back-playlist">
+                            <%= link_to "Go Back to Playlists", "/playlist", :class => "btn btn-info" %>
+                        </div>
+                    <% else %>
+                        <div class="go-back-playlist">
+                            <%= link_to "Go Back to Homepage", "/", :class => "btn btn-info" %>
+                        </div>
+                    <% end %>
+                    <h1>Playlist Name: <%= @playlist.name %></h1>
+                    <p>Playlist Key: <%= @key %></p>
                     <div class="search-queue">
                         <%= form_tag "/dashboard", :method => "get" do %>
                             <%= text_field_tag :search, params[:search] %>
