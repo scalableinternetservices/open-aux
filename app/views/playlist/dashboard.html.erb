@@ -7,9 +7,15 @@
 
 
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
   <script>
     var newPlayer; 
-  
+    var currentState;
+    var deviceId;
+
     window.onSpotifyWebPlaybackSDKReady = () => {
       const token = '<%= @accessToken %>';
       const player = new Spotify.Player({
@@ -24,10 +30,14 @@
       player.addListener('playback_error', ({ message }) => { console.error(message); });
 
       // Playback status updates
-      player.addListener('player_state_changed', state => { console.log(state); });
+      player.addListener('player_state_changed', state => { 
+      currentState = state.paused
+      console.log(state); 
+      });
 
       // Ready
       player.addListener('ready', ({ device_id }) => {
+        deviceId = device_id
         console.log('Ready with Device ID', device_id);
       });
 
@@ -43,13 +53,39 @@
           console.error('User is not playing music through the Web Playback SDK');
           return;
         }
-        console.log(state.track_window)
       });
 
       newPlayer = player
     };
 
+    function togglePlay() {
+        console.log(currentState)
+
+          newPlayer.getCurrentState().then(state => {
+            console.log(state)
+            if (!state) {
+              $.ajax({
+                url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
+                type: "PUT",
+                data: '{"uris": ["spotify:track:6Usab30ub0EPCV6KdkBXuw"]}',
+                beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + '<%= @accessToken %>' );},
+                success: function(data) { 
+                  console.log(data)
+                }
+              });
+            } else {
+              newPlayer.togglePlay()
+            }
+
+          });
+
+          
+        }
+
   </script>
-  <button type="button" onclick="newPlayer.togglePlay()"> play/pause </button>
+
+
+  <button type="button" onclick="togglePlay()"> play/pause </button>
+
 </body>
 </html>
