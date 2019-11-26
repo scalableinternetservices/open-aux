@@ -18,14 +18,20 @@ class PlaylistController < ApplicationController
   # store the hashed value of the playlist_id into the playlist model
   # this allows protected access to each playlist instance
   def create
-    @playlist = Playlist.create(name: playlist_params[:name], userId: session[:user_id], hashed_id: nil)
-    hashed_id = BCrypt::Password.create(@playlist.id)
-    @playlist[:hashed_id] = hashed_id
-    @playlist.save()
-    session[:hashed_id] = @playlist.hashed_id
-    @key = BCrypt::Password.new(session[:hashed_id])
-    @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
-    render "show"
+    if playlist_params[:name].blank?
+      flash.now[:error] = 'Please enter playlist name!'
+      @playlist = Playlist.new
+      render 'new'
+    else
+      @playlist = Playlist.create(name: playlist_params[:name], userId: session[:user_id], hashed_id: nil)
+      hashed_id = BCrypt::Password.create(@playlist.id)
+      @playlist[:hashed_id] = hashed_id
+      @playlist.save()
+      session[:hashed_id] = @playlist.hashed_id
+      @key = BCrypt::Password.new(session[:hashed_id])
+      @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
+      render "show"
+    end
   end 
 
   # returns a hashed value of the playlist's hashed_id

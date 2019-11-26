@@ -17,16 +17,18 @@
       <% provide(:title, "playlist") %>
 
       <div class="row justify-content-center">
-         <h1> Playlist Name: <%= @playlist.name %> </h1>
+         <h3> Playlist Name:</h3>
          <div class="col-md-6 col-md-offset-3">
-            <br>
-            <div class="user-playlists"></div>
-            <%= form_for(@playlist, url: playlist_path) do |f| %>
-
-            <%= f.text_field :name, class: "form-control", method: :post %>
-            <br>
-            <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+            <% flash.each do |message_type, message| %>
+               <div class="alert alert-danger"><%= message %></div>
             <% end %>
+            <%= form_for(@playlist, url: playlist_path) do |f| %>
+               <div style="display: flex; flex-direction: row; width: 600px;">
+                  <%= f.text_field :name, class: "form-control", method: :post %>
+                  <%= f.submit "Create my Playlist", class: "btn btn-primary" %>
+               </div>
+            <% end %><br>
+            <div class="user-playlists"></div>
          </div>
       </div>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
