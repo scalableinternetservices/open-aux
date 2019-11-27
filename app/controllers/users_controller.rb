@@ -26,6 +26,7 @@ class UsersController < ApplicationController
       helpers.reqAccessToken(params)
       redirect_to :controller => 'playlist', :action => 'new'
     end
+  end
 
   def user_playlists
     @playlists = Playlist.where(userId: session[:user_id])
