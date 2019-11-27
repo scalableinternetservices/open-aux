@@ -29,6 +29,8 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 #rspotify
 gem 'rspotify'
+#omniauth
+gem 'omniauth-spotify'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

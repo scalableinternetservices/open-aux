@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   #playlist
+
+  get   '/playlist',   to: 'playlist#new'
+  post  '/playlist',   to: 'playlist#create'
+  get   '/playlist/get-key', to:'playlist#get_playlist_key'
+  get   'playlist/decrypt-key', to:'playlist#decrypt_key'
+  get   'playlist/get-songs', to:'playlist#get_songs'
+  get   'playlist/dashboard', to: 'playlist#dashboard'
   get   '/playlist',               to: 'playlist#new'
   post  '/playlist',               to: 'playlist#create'
   get   '/dashboard',              to: 'playlist#show'
@@ -37,6 +44,12 @@ Rails.application.routes.draw do
   post '/song/up-vote',   to: 'song#up_vote'
   post '/song/down-vote', to: 'song#down_vote'
 
+
+  # get '/auth/spotify', to: redirect('https://accounts.spotify.com/authorize')
+  get '/auth/spotify/callback', to: 'users#update'
+
+
+  # get '/user/auth', to: 'users#userData'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"

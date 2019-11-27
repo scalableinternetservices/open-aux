@@ -1,7 +1,16 @@
 
 class SongController < ApplicationController
+
   def new
     @song = Song.new
+  end
+
+  def play 
+    helpers.playSongFromAPI(params[:spotify_id])
+  end
+
+  def pause
+    pauseSongFromAPI(params[:spotify_id])
   end
   
   def create

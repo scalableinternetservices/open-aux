@@ -9,6 +9,12 @@
 /log/*
 !/log/.keep
 /tmp/
+/config/master.key
+
+# Ignore bytebug history 
+.byebug_history
+
 
 # Ignore node_modules
 /node_modules/
+

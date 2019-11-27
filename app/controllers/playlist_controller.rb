@@ -2,6 +2,9 @@ require 'bcrypt'
 class PlaylistController < ApplicationController
   def new
     @playlist = Playlist.new
+    # session[:credentials] = request.env['omniauth.auth'].credentials
+    # debugger
+    # request.env['omniauth.auth'].uid
   end
 
   def show
@@ -42,7 +45,6 @@ class PlaylistController < ApplicationController
   end
 
   def get_songs
-    #puts session[:hashed_id]
     @hashed_id = session[:hashed_id]
     @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
     
@@ -59,6 +61,11 @@ class PlaylistController < ApplicationController
     @hashed_id = params[:hashed_id]
     session[:hashed_id] = @hashed_id
     redirect_to "/dashboard"
+  end
+
+  def dashboard
+    @accessToken = User.find_by(id: session[:userId]).accessToken
+    render 'dashboard'
   end
 
   private

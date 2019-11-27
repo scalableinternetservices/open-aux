@@ -11,14 +11,14 @@
 <% end %>
 
     <% trackList = [] if trackList == nil %>
-    <% @trackList.each do |item|%>
+    <% @trackList["albums"]["items"].each do |item|%>
       <div>
-        <% item.artists.each do |aristObj|  %>  
+        <% item["artists"].each do |aristObj|  %>  
           <%= form_with(url: "/song", method: "post") do %>
-            <%= hidden_field_tag(:spotify_id, item.id) %>
-            <%= hidden_field_tag(:name, item.name) %>
-            <%= hidden_field_tag(:artist, aristObj.name) %>
-            <%= submit_tag(item.name + " - " + aristObj.name) %>
+            <%= hidden_field_tag(:spotify_id, item["id"]) %>
+            <%= hidden_field_tag(:name, item["name"]) %>
+            <%= hidden_field_tag(:artist, aristObj["name"]) %>
+            <%= submit_tag(item["name"] + " - " + aristObj["name"]) %>
 
           <% end %>
         <% end %>
