@@ -1,3 +1,99 @@
-<%= @playlist.name %>
+<html>
+    <body>
+        <% if logged_in? %>
+            <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand">OpenAUX</a>
+            <a href="/logout" class="button">Logout</a>
+            </nav>
+        <% else %>
+            <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand">OpenAUX</a>
+            <form class="form-inline">
+                <a href="/login" class="button">Login</a>
+            </form>
+            </nav>
+        <% end %>
+    
+        <div class="dashboard-wrapper">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <% if logged_in? %>
+                        <div class="go-back-playlist">
+                            <%= link_to "Go Back to Playlists", "/playlist", :class => "btn btn-info" %>
+                        </div>
+                    <% else %>
+                        <div class="go-back-playlist">
+                            <%= link_to "Go Back to Homepage", "/", :class => "btn btn-info" %>
+                        </div>
+                    <% end %>
+                    <h1>Playlist Name: <%= @playlist.name %></h1>
+                    <p>Playlist Key: <%= @key %></p>
+                    <div class="search-queue">
+                        <%= form_tag "/dashboard", :method => "get" do %>
+                            <%= text_field_tag :search, params[:search] %>
+                            <%= submit_tag "Search" %>
+                        <% end %>
+                    </div><br>
+                    <h2><u>Queue</u></h2>
+                    <div class="queue-list">
+                        <div class="add-song">
+                            <%= link_to "Add Song", "/searchResult", :class => "btn btn-primary" %>
+                        </div>
+                        <% for song in @songs %>
+                            <div class="each-song">
+                                <div>
+                                    <h4><%= song.name %></h4>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-success" onClick="(function(){handleUpVote(<%= song.id %>);})();">Upvote</button>
+                                    <button type="button" class="btn btn-danger" onClick="(function(){handleDownVote(<%= song.id %>);})();">Downvote</button>
+                                    <button type="button" class="btn btn-info"><%= song.vote_count %></button>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var handleUpVote = s_id => {
+                console.log(s_id);
 
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
 
+                $.ajax({
+                    url: `/song/up-vote?s_id=${s_id}`,
+                    type: "POST",
+                    success: function(data) {
+                        console.log("Upvote request successfully made!");
+                        window.location.reload();
+                    }
+                })
+            }
+
+            var handleDownVote = s_id => {
+                console.log(s_id);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+
+                $.ajax({
+                    url: `/song/down-vote?s_id=${s_id}`,
+                    type: "POST",
+                    success: function(data) {
+                        console.log("Downvote request successfully made!");
+                        window.location.reload();
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

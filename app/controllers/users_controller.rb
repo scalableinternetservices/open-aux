@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def update
     if params[:error]
       puts 'LOGIN ERROR', params
@@ -25,6 +26,11 @@ class UsersController < ApplicationController
       helpers.reqAccessToken(params)
       redirect_to :controller => 'playlist', :action => 'new'
     end
+
+  def user_playlists
+    @playlists = Playlist.where(userId: session[:user_id])
+    render json: {res: @playlists}
+
   end
 
   private

@@ -3,6 +3,7 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+
   def spotifyAuth
     # uri = URI('http://example.com/index.html')
     puts Rails.application.credentials.spotify[:client_id]
@@ -15,6 +16,21 @@ module SessionsHelper
       }
       url = 'https://accounts.spotify.com/authorize'
       redirect_to "#{url}?#{query.to_query}"
+  end
+
+  def current_user
+    if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
+  end
+
+  def logged_in?
+    !current_user.nil?
+  end
+
+  def log_out
+  session.delete(:user_id)
+  @current_user = nil
   end
 
 end

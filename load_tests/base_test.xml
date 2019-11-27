@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [] >
+<tsung loglevel="notice">
+  <!-- Client side setup -->
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers='15000'/>
+  </clients>
+
+  <!-- Server side setup -->
+  <servers>
+    <server host="http://openaux-demo.bu3hn7we2f.us-west-2.elasticbeanstalk.com/" port="80" type="tcp"></server>
+  </servers>
+
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="1" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
+   <arrivalphase phase="4" duration="30" unit="second">
+     <users arrivalrate="8" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="5" duration="30" unit="second">
+     <users arrivalrate="16" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="6" duration="30" unit="second">
+     <users arrivalrate="32" unit="second"></users>
+   </arrivalphase>
+<!--
+   <arrivalphase phase="7" duration="30" unit="second">
+     <users arrivalrate="64" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="8" duration="30" unit="second">
+     <users arrivalrate="128" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="9" duration="30" unit="second">
+     <users arrivalrate="256" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="10" duration="30" unit="second">
+     <users arrivalrate="512" unit="second"></users>
+   </arrivalphase>
+-->
+  </load>
+
+  <options>
+    <!-- Set connection timeout to 2 seconds -->
+    <option name="global_ack_timeout" value="2000"></option>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+    <session name="http-example" probability="100" type="ts_http">
+
+      <!-- Start at root -->
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- Go to login  -->
+      <request>
+        <http url='/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- Go to signup  -->
+      <request>
+        <http url='/signup' version='1.1' method='GET'></http>
+      </request>
+
+
+      <!-- create a random user name -->
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="random_user_name" />
+      </setdynvars>
+
+      <!-- signup with random user name-->
+      <thinktime value="8" random="true"></thinktime>
+      <request subst="true">
+        <http url='/signup' version='1.1'  contents='user%5Bname%5D=test_%%_random_user_name%%&amp;user%5Bemail%5D=test_%%_random_user_name%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Create+my+account' content_type='application/x-www-form-urlencoded' method='POST'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Redirecting back to login page -->
+      <request>
+        <http url='/users/1' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <thinktime random='true' value='2'/>
+
+      <request>
+        <http url='/login' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Logging in -->
+      <thinktime random='true' value='5'/>
+
+      <request subst="true">
+        <http url='/login' version='1.1'  contents='session%5Bemail%5D=test_%%_random_user_name%%%40gmail.com&amp;session%5Bpassword%5D=password&amp;commit=Log+in' content_type='application/x-www-form-urlencoded' method='POST'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Go to User's playlist list page -->
+      <request>
+        <http url='/playlist' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Fetch all User's playlists -->
+      <request><http url='/user-playlists' version='1.1' method='GET'>
+        <http_header name='Accept' value='application/json, text/javascript, */*; q=0.01' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' />
+        <http_header name='X-Requested-With' value='XMLHttpRequest' /></http></request>
+
+      <!-- User creates a new playlist -->
+      <thinktime random='true' value='4'/>
+
+      <!-- create a random playlist name -->
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="random_playlist_name" />
+      </setdynvars>
+
+      <!-- A session variable (hashed_id) should be set here...? -->
+      <request subst="true">
+        <http url='/playlist' version='1.1'  contents='playlist%5Bname%5D=test_%%_random_playlist_name%%&amp;commit=Create+my+Playlist' content_type='application/x-www-form-urlencoded' method='POST'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Enter the song search page -->
+      <request>
+      <http url='/searchResult' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Perform the search -->
+      <request>
+        <http url='/search?q=drake&amp;commit=Search' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Choose & insert the song -->
+      <request>
+        <http url='/song' version='1.1'  contents='spotify_id=5ry2OE6R2zPQFDO85XkgRb&amp;name=Money%20In%20The%20Grave%20(Drake%20ft.%20Rick%20Ross)&amp;artist=Drake&amp;commit=Money%20In%20The%20Grave%20(Drake%20ft.%20Rick%20Ross)%20-%20Drake' content_type='application/x-www-form-urlencoded; charset=UTF-8' method='POST'>
+        <http_header name='Accept' value='text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' />
+        <http_header name='X-Requested-With' value='XMLHttpRequest' /></http>
+      </request>
+
+      <!-- Go back to dashboard -->
+      <request>
+        <http url='/dashboard' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+      <!-- Logout and return to root page -->
+      <request>
+        <http url='/logout' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+      <request>
+        <http url='/' version='1.1' method='GET'>
+        <http_header name='Accept' value='text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' />
+        <http_header name='Accept-Encoding' value='gzip, deflate' />
+        <http_header name='Accept-Language' value='en-US,en;q=0.5' /></http>
+      </request>
+
+    </session>
+  </sessions>
+</tsung>
+
+<!-- 
+  %5B: [
+  %5D: ]
+  %40: @
+  %20: space
+  &amp: &
+  ???-->

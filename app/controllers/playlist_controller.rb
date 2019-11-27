@@ -8,18 +8,33 @@ class PlaylistController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.find(params[:id])
+    @key = BCrypt::Password.new(session[:hashed_id])
+    @playlist = Playlist.where(hashed_id=session[hashed_id])
+    @hashed_id = session[:hashed_id]
+    if params[:search]
+      @songs = Song.where("lower(name) LIKE ? OR lower(artist) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+    else
+      @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+    end
   end 
 
   # store the hashed value of the playlist_id into the playlist model
   # this allows protected access to each playlist instance
   def create
-    @playlist = Playlist.create(name: playlist_params[:name], userId: session[:user_id], hashed_id: nil)
-    hashed_id = BCrypt::Password.create(@playlist.id)
-    @playlist[:hashed_id] = hashed_id
-    @playlist.save()
-    session[:hashed_id] = @playlist.hashed_id
-    render "show"
+    if playlist_params[:name].blank?
+      flash.now[:error] = 'Please enter playlist name!'
+      @playlist = Playlist.new
+      render 'new'
+    else
+      @playlist = Playlist.create(name: playlist_params[:name], userId: session[:user_id], hashed_id: nil)
+      hashed_id = BCrypt::Password.create(@playlist.id)
+      @playlist[:hashed_id] = hashed_id
+      @playlist.save()
+      session[:hashed_id] = @playlist.hashed_id
+      @key = BCrypt::Password.new(session[:hashed_id])
+      @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
+      render "show"
+    end
   end 
 
   # returns a hashed value of the playlist's hashed_id
@@ -32,15 +47,20 @@ class PlaylistController < ApplicationController
   def get_songs
     @hashed_id = session[:hashed_id]
     @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
-
+    
     render json: {res: @songs}
   end
 
   #req: :key, :name
   def decrypt_key
     @hashed_id = BCrypt::Password.new(params[:key])
-    session[:name] = params[:name]
-    #redirect_to playlist_mainpage
+    session[:hashed_id] = @hashed_id
+  end
+
+  def route_playlist
+    @hashed_id = params[:hashed_id]
+    session[:hashed_id] = @hashed_id
+    redirect_to "/dashboard"
   end
 
   def dashboard
