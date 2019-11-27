@@ -13,5 +13,6 @@ module UsersHelper
     authParams = JSON.parse res.body
     @user = User.find_by(id: session[:userId])
     @user.update(accessToken: authParams['access_token'], refreshToken: authParams['refresh_token'])
+    puts(res.body)
   end
 end

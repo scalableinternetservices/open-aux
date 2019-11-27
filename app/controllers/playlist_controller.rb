@@ -30,7 +30,6 @@ class PlaylistController < ApplicationController
   end
 
   def get_songs
-    #$2a$12$WLdfEmz4.vruvFQS7RU8weHZuzscgdf5TceVD4wm.L0uH9jHzAkWq
     @hashed_id = session[:hashed_id]
     @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
 
@@ -42,6 +41,11 @@ class PlaylistController < ApplicationController
     @hashed_id = BCrypt::Password.new(params[:key])
     session[:name] = params[:name]
     #redirect_to playlist_mainpage
+  end
+
+  def dashboard
+    @accessToken = User.find_by(id: session[:userId]).accessToken
+    render 'dashboard'
   end
 
   private
