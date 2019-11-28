@@ -15,6 +15,7 @@
     var newPlayer; 
     var currentState;
     var deviceId;
+    var songHasEnded
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       const token = '<%= @accessToken %>';
@@ -30,9 +31,38 @@
       player.addListener('playback_error', ({ message }) => { console.error(message); });
 
       // Playback status updates
-      player.addListener('player_state_changed', state => { 
-      currentState = state.paused
-      console.log(state); 
+      // player.addListener('player_state_changed', state => { 
+
+
+      //});
+
+      //Song has song ended
+      player.addListener('player_state_changed', (state) => {
+        console.log(state);
+        if (
+          this.state
+          && state.track_window.previous_tracks.find(x => x.id === state.track_window.current_track.id)
+          && !this.state.paused
+          && state.paused
+          ) {
+          songHasEnded = 1
+          console.log('Track ended');
+          setTimeout(function(){  }, 3000);
+          //this.setTrackEnd(true);
+          $.ajax({
+            url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
+            type: "PUT",
+            data: '{"uris": ["spotify:track:0NxHMGOA8vwPD0x8MmXnp7"]}',
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + '<%= @accessToken %>' );},
+            success: function(data) { 
+              console.log(data)
+            }
+          });
+
+        }
+        this.state = state;
+        console.log('track has not ended')
+        songHasEnded = 0
       });
 
       // Ready

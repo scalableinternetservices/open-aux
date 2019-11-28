@@ -38,6 +38,7 @@ class SongController < ApplicationController
 
   def search
     @trackList = helpers.getSongsFromAPI(params[:q])
+
     #@trackList = helpers.getSongsFormAPI(search_params[:name])
     render 'show'
   end

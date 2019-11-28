@@ -10,7 +10,7 @@
   <%= submit_tag("Search") %>
 <% end %>
 
-    <% trackList = [] if trackList == nil %>
+  <% if @trackList != [] %>
     <% @trackList["albums"]["items"].each do |item|%>
       <div>
         <% item["artists"].each do |aristObj|  %>  
@@ -19,11 +19,11 @@
             <%= hidden_field_tag(:name, item["name"]) %>
             <%= hidden_field_tag(:artist, aristObj["name"]) %>
             <%= submit_tag(item["name"] + " - " + aristObj["name"]) %>
-
           <% end %>
         <% end %>
       </div>
     <% end %>
+    <%end%>
     <br>
     <div>
       <button type="button" class="btn btn-primary" onClick="(function(){ window.location.replace('/dashboard') })();">Return to Dashboard</button>
