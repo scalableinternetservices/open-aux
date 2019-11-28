@@ -28,18 +28,18 @@ ActiveRecord::Schema.define(version: 2019_11_28_185724) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "hashed_id"
     t.integer "userId"
+    t.string "hashed_id"
     t.index ["hashed_id"], name: "index_playlists_on_hashed_id"
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
+    t.integer "vote_count"
     t.string "artist"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "spotify_id"
-    t.integer "vote_count"
   end
 
   create_table "users", force: :cascade do |t|
