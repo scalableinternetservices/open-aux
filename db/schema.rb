@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_005222) do
+ActiveRecord::Schema.define(version: 2019_11_28_034259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_005222) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "hashed_id"
+    t.integer "vote_count"
     t.index ["song_id"], name: "index_playlist_songs_on_song_id"
   end
 
@@ -27,13 +28,12 @@ ActiveRecord::Schema.define(version: 2019_11_22_005222) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "userId"
     t.string "hashed_id"
+    t.integer "user_id"
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
-    t.integer "vote_count"
     t.string "artist"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
