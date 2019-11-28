@@ -14,7 +14,7 @@ module SongHelper
     @user = User.find_by(id: session[:userId])
 
     uri = URI('https://api.spotify.com/v1/search')
-    params = { :q => stringQuery, :limit => 10, :type => ['album','arist','playlist','track'], :access_token => @user["accessToken"] }
+    params = { :q => stringQuery, :limit => 10, :type => ['track'], :access_token => @user["accessToken"] }
     uri.query = URI.encode_www_form(params)
 
     res = Net::HTTP.get_response(uri)

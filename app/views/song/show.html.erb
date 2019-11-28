@@ -11,7 +11,7 @@
 <% end %>
 
   <% if @trackList != [] %>
-    <% @trackList["albums"]["items"].each do |item|%>
+    <% @trackList["tracks"]["items"].each do |item|%>
       <div>
         <% item["artists"].each do |aristObj|  %>  
           <%= form_with(url: "/song", method: "post") do %>
