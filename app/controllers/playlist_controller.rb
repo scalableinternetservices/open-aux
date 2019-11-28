@@ -28,7 +28,7 @@ class PlaylistController < ApplicationController
       @playlist[:hashed_id] = hashed_id
       @playlist.save()
       session[:hashed_id] = @playlist.hashed_id
-      @key = BCrypt::Password.new(session[:hashed_id])
+      @key = BCrypt::Password.new(session[:hashed_id])      
       @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
       render "show"
     end
@@ -44,9 +44,19 @@ class PlaylistController < ApplicationController
   def get_songs
     #puts session[:hashed_id]
     @hashed_id = session[:hashed_id]
-    @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
-    
-    render json: {res: @songs}
+    @songs = Song.where( id: PlaylistSong.where(hashed_id:"$2a$12$oueH0DxM8ZoyW2bODWtDhOI/jEpHW.8HhHN3eCzXsZzbrAYgWdVEC").pluck(:song_id) )
+
+    render json: {res: @songs, res2: @songs2}
+  end
+
+
+  # test version - change this to get_songs (the def above) and deprecate the current version of get_songs
+  def test_get_songs
+    @hashed_id = session[:hashed_id]
+    @songsInPlaylist = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id:"$2a$12$oueH0DxM8ZoyW2bODWtDhOI/jEpHW.8HhHN3eCzXsZzbrAYgWdVEC" }).select("songs.*, playlist_songs.vote_count")
+    @songs1 = Song.where( id: PlaylistSong.where(hashed_id: "$2a$12$oueH0DxM8ZoyW2bODWtDhOI/jEpHW.8HhHN3eCzXsZzbrAYgWdVEC").pluck(:song_id))
+
+    render json: {res: @songsInPlaylist, res2: @songs1}
   end
 
   #req: :key, :name

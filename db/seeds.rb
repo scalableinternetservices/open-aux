@@ -43,9 +43,6 @@ Song.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Song.table_name)
 
 Song.create( name: "No Guidance (feat. Drake)" , artist: "Chris Brown", spotify_id: "6XHVuErjQ4XNm6nDPVCxVX")
-Song.create( name: "No Guidance (feat. Drake)" , artist: "Chris Brown", spotify_id: "6XHVuErjQ4XNm6nDPVCxVX")
-Song.create( name: "No Guidance (feat. Drake)" , artist: "Chris Brown", spotify_id: "6XHVuErjQ4XNm6nDPVCxVX")
-Song.create( name: "Going Bad (feat. Drake)" , artist: "Meek Mill", spotify_id: "2IRZnDFmlqMuOrYOLnZZyc")
 Song.create( name: "Going Bad (feat. Drake)" , artist: "Meek Mill", spotify_id: "2IRZnDFmlqMuOrYOLnZZyc")
 Song.create( name: "Money In The Grave (Drake ft. Rick Ross)" , artist: "Drake", spotify_id: "5ry2OE6R2zPQFDO85XkgRb")
 Song.create( name: "22" , artist: "Taylor Swift", spotify_id: "3bIxTsfeNMO7Nt2J3EUKrA")
@@ -53,11 +50,11 @@ Song.create( name: "22" , artist: "Taylor Swift", spotify_id: "3bIxTsfeNMO7Nt2J3
 # Creating join table PlaylistSong
 
 @playlist1.playlist_songs.create(song_id: 1, hashed_id: @playlist1.hashed_id, vote_count: 0)
-@playlist2.playlist_songs.create(song_id: 2, hashed_id: @playlist2.hashed_id, vote_count: 0)
+@playlist2.playlist_songs.create(song_id: 1, hashed_id: @playlist2.hashed_id, vote_count: 0)
 @playlist3.playlist_songs.create(song_id: 3, hashed_id: @playlist3.hashed_id, vote_count: 0)
-@playlist1.playlist_songs.create(song_id: 4, hashed_id: @playlist1.hashed_id, vote_count: 0)
-@playlist2.playlist_songs.create(song_id: 5, hashed_id: @playlist2.hashed_id, vote_count: 0)
-@playlist4.playlist_songs.create(song_id: 6, hashed_id: @playlist4.hashed_id, vote_count: 0)
+@playlist1.playlist_songs.create(song_id: 2, hashed_id: @playlist1.hashed_id, vote_count: 0)
+@playlist2.playlist_songs.create(song_id: 2, hashed_id: @playlist2.hashed_id, vote_count: 0)
+@playlist4.playlist_songs.create(song_id: 4, hashed_id: @playlist4.hashed_id, vote_count: 0)
 
 # PlaylistSong.create(song_id: 2, hashed_id: @playlist2.hashed_id)
 # PlaylistSong.create(song_id: 3, hashed_id: @playlist3.hashed_id)
