@@ -99,13 +99,14 @@
                 ) {
                 songHasEnded = 1
                 console.log('Track ended');
+                <% songEnded(@trackId[1]) if @trackId != nil %>
                 setTimeout(function(){  }, 3000);
                 //this.setTrackEnd(true);
                 <% @trackId = fetchNewSong() %>
                 $.ajax({
                   url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
                   type: "PUT",
-                  data: '{"uris": ["spotify:track:<%= @trackId%>"]}',
+                  data: '{"uris": ["spotify:track:<%= @trackId[0]%>"]}',
                   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + '<%= @accessToken %>' );},
                   success: function(data) { 
                     console.log(data)
@@ -149,7 +150,7 @@
                     $.ajax({
                       url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
                       type: "PUT",
-                      data: '{"uris": ["spotify:track:<%= @initializePlaylist %>"]}',
+                      data: '{"uris": ["spotify:track:<%= @trackId[0] %>"]}',
                       beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + '<%= @accessToken %>' );},
                       success: function(data) { 
                         console.log(data)

@@ -1,6 +1,6 @@
 require 'bcrypt'
 class PlaylistController < ApplicationController
-  helper_method :fetchNewSong
+  helper_method :fetchNewSong, :songEnded
   def new
     @playlist = Playlist.new
     # session[:credentials] = request.env['omniauth.auth'].credentials
@@ -72,7 +72,14 @@ class PlaylistController < ApplicationController
   end
 
   def fetchNewSong
-    @trackId = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC').first.spotify_id
+    @trackId = [Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC').first.spotify_id,
+                Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC').first.id]
+  end
+
+  def songEnded(trackThatEnded)
+    @songsInPlaylist = PlaylistSong.where(hashed_id: session[:hashed_id]).pluck(trackThatEnded)
+    @temp = Song.find(@songsInPlaylist)
+    @temp[0].update(vote_count: -500)
   end
   
 

@@ -16,7 +16,6 @@ module SessionsHelper
       }
       url = 'https://accounts.spotify.com/authorize'
       redirect_to "#{url}?#{query.to_query}"
-      debugger
   end
 
   def current_user
