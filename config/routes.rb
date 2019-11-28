@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   post '/song/up-vote',   to: 'song#up_vote'
   post '/song/down-vote', to: 'song#down_vote'
 
+  #testing
+  get '/test-get-songs',   to: 'playlist#test_get_songs'
+
 
   # get '/auth/spotify', to: redirect('https://accounts.spotify.com/authorize')
   get '/auth/spotify/callback', to: 'users#update'

@@ -14,21 +14,16 @@ class SongController < ApplicationController
   end
   
   def create
-    # @song = Song.create(name: nil, vote_count: 0, arist: nil, spotify_id: nil)
-    # @song = Song.new(name: song_params[:name], vote_count: 0, artist: song_params[:artist], spotify_id: song_params[:spotify_id])
-    # @songsInPlaylist = PlaylistSong.where(hashed_id: session[:hashed_id]).join(:song).where(id: song.id).pluck(:song_id)
-
-    # @temp = PlaylistSong.where(hashed_id: session[:hashed_id]).join(:Song).where('Song.id = PlaylistSong.song_id' )
-    # @result = @temp.where(spotify_id: params[:spotify_id])
-
-    @songsInPlaylist = PlaylistSong.where(hashed_id: session[:hashed_id]).pluck(:song_id)
-    @temp = Song.find(@songsInPlaylist).select {|i| i.spotify_id == params[:spotify_id] }
-    if @temp.length == 0
-      @song = Song.create(name: params[:name], vote_count: 0, artist: params[:artist], spotify_id: params[:spotify_id])
-      PlaylistSong.create(song_id: @song.id, hashed_id: session[:hashed_id])
-      flash.now[:notice] = "Song was added to playlist!"
-      redirect_to playlist_url
+    if !Song.exists?(spotify_id: params[:spotify_id])
+      @song = Song.create(name: params[:name], artist: params[:artist], spotify_id: params[:spotify_id])
+    else 
+      @song = Song.where(spotify_id: params[:spotify_id]).first
     end
+    @playlist = Playlist.where(hashed_id: session[:hashed_id]).first
+    @playlist.playlist_songs.create(song_id: @song.id, hashed_id: @playlist.hashed_id, vote_count: 0)
+    
+    flash.now[:notice] = "Song was added to playlist!"
+    redirect_to playlist_url
   end
 
   def show
@@ -44,19 +39,16 @@ class SongController < ApplicationController
   end
 
   def up_vote
-    if @song = Song.find(params[:s_id].to_f)
-      @song.update(vote_count: (@song.vote_count + 1))
-      render json: { res: @song }
-    else
-      render json: {
-        error: "Song with s_id: #{params[:s_id]} not found"
-      }, status: :not_found
-    end
+    @playlist_song = PlaylistSong.where(song_id: params[:s_id].to_f, hashed_id: session[:hashed_id]).first
+    @playlist_song.update(vote_count: (@playlist_song.vote_count + 1))
+    @playlist_song.save()
+    render json: { res: @song }
   end
 
   def down_vote
-    @song = Song.find(params[:s_id].to_f)
-    @song.update(vote_count: (@song.vote_count - 1))
-    render json: {res: @song}
+    @playlist_song = PlaylistSong.where(song_id: params[:s_id].to_f, hashed_id: session[:hashed_id]).first
+    @playlist_song.update(vote_count: (@playlist_song.vote_count - 1))
+    @playlist_song.save()
+    render json: { res: @song }
   end
 end
