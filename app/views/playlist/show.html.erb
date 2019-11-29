@@ -99,7 +99,6 @@
                   ) {
                   songHasEnded = 1
                   console.log('Track ended');
-                  <% debugger %>
                   <% songEnded(@trackId[1]) if @trackId != [] && @firstVisit == 1 %>
                   setTimeout(function(){  }, 3000);
                   //this.setTrackEnd(true);
