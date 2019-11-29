@@ -1,7 +1,11 @@
 require 'bcrypt'
 class PlaylistController < ApplicationController
+  helper_method :fetchNewSong
   def new
     @playlist = Playlist.new
+    # session[:credentials] = request.env['omniauth.auth'].credentials
+    # debugger
+    # request.env['omniauth.auth'].uid
   end
 
   def show
@@ -13,6 +17,8 @@ class PlaylistController < ApplicationController
     else
       @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
     end
+    @accessToken = User.find_by(id: session[:userId]).accessToken
+    @initializePlaylist = fetchNewSong
   end 
 
   # store the hashed value of the playlist_id into the playlist model
@@ -42,7 +48,6 @@ class PlaylistController < ApplicationController
   end
 
   def get_songs
-    #puts session[:hashed_id]
     @hashed_id = session[:hashed_id]
     @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
     
@@ -60,6 +65,16 @@ class PlaylistController < ApplicationController
     session[:hashed_id] = @hashed_id
     redirect_to "/dashboard"
   end
+
+  def dashboard
+    @accessToken = User.find_by(id: session[:userId]).accessToken
+    render 'dashboard'
+  end
+
+  def fetchNewSong
+    @trackId = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC').first.spotify_id
+  end
+  
 
   private
     def playlist_params

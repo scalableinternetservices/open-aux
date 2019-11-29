@@ -10,20 +10,20 @@
   <%= submit_tag("Search") %>
 <% end %>
 
-    <% trackList = [] if trackList == nil %>
-    <% @trackList.each do |item|%>
+  <% if @trackList != [] %>
+    <% @trackList["tracks"]["items"].each do |item|%>
       <div>
-        <% item.artists.each do |aristObj|  %>  
+        <% item["artists"].each do |aristObj|  %>  
           <%= form_with(url: "/song", method: "post") do %>
-            <%= hidden_field_tag(:spotify_id, item.id) %>
-            <%= hidden_field_tag(:name, item.name) %>
-            <%= hidden_field_tag(:artist, aristObj.name) %>
-            <%= submit_tag(item.name + " - " + aristObj.name) %>
-
+            <%= hidden_field_tag(:spotify_id, item["id"]) %>
+            <%= hidden_field_tag(:name, item["name"]) %>
+            <%= hidden_field_tag(:artist, aristObj["name"]) %>
+            <%= submit_tag(item["name"] + " - " + aristObj["name"]) %>
           <% end %>
         <% end %>
       </div>
     <% end %>
+    <%end%>
     <br>
     <div>
       <button type="button" class="btn btn-primary" onClick="(function(){ window.location.replace('/dashboard') })();">Return to Dashboard</button>
