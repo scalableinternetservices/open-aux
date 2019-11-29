@@ -38,6 +38,7 @@ class SongController < ApplicationController
     render 'show'
   end
 
+
   def up_vote
     @playlist_song = PlaylistSong.where(song_id: params[:s_id].to_f, hashed_id: session[:hashed_id]).first
     @playlist_song.update(vote_count: (@playlist_song.vote_count + 1))

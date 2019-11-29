@@ -28,7 +28,9 @@
                     <% end %>
                     <h1>Playlist Name: <%= @playlist.name %></h1>
                     <p>Playlist Key: <%= @key %></p>
-                    <button type="button" onclick="togglePlay()"> play/pause </button>
+                    <% if logged_in? %>
+                      <button type="button" onclick="togglePlay()"> Play/Pause </button>
+                    <% end %>
                     <div class="search-queue">
                         <%= form_tag "/dashboard", :method => "get" do %>
                             <%= text_field_tag :search, params[:search] %>
@@ -82,7 +84,8 @@
           var newPlayer; 
           var currentState;
           var deviceId;
-          var songHasEnded
+          var songHasEnded;
+          var currentTrack;
 
           window.onSpotifyWebPlaybackSDKReady = () => {
             const token = '<%= @accessToken %>';
@@ -115,25 +118,36 @@
                   ) {
                   songHasEnded = 1
                   console.log('Track ended');
-                  <% songEnded(@trackId[1]) if @trackId != [] && @firstVisit == 1 %>
                   setTimeout(function(){  }, 3000);
                   //this.setTrackEnd(true);
-                  <% @trackId = fetchNewSong() %>
-                  <% @firstVisit = 1 %>
                   $.ajax({
-                    url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
-                    type: "PUT",
-                    data: '{"uris": ["spotify:track:<%= @trackId[0]%>"]}',
-                    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + '<%= @accessToken %>' );},
-                    success: function(data) { 
-                      console.log(data)
+                    url: `/playlist/songEnded`,
+                    type: "POST",
+                    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                    success: function(data) {
+                        console.log("deleting old track and fetching new request successfully made!");
+                        $.ajax({
+                          url: `/playlist/trackState`,
+                          type: "GET",
+                          success: function(data) {
+                              console.log("initlization successfull!");
+                              console.log(data.res[0].spotify_id)
+                              $.ajax({
+                                url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
+                                type: "PUT",
+                                data: `{"uris": ["spotify:track:${data.res[0].spotify_id}"]}`,
+                                headers: { 'Authorization': 'Bearer ' + '<%= @accessToken %>' },
+                                success: function(data) { 
+                                  getSongFunction();
+                                }
+                              });
+                          }
+                      })
                     }
-                  });
-        
+                })
                 }
                 this.state = state;
                 console.log('track has not ended')
-                songHasEnded = 0
               });
 
 
@@ -167,14 +181,23 @@
                   console.log(state)
                   if (!state) {
                     $.ajax({
-                      url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
-                      type: "PUT",
-                      data: '{"uris": ["spotify:track:<%= @trackId[0] %>"]}',
-                      beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + '<%= @accessToken %>' );},
-                      success: function(data) { 
-                        console.log(data)
+                      url: `/playlist/trackState`,
+                      type: "GET",
+                      headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                      success: function(data) {
+                          console.log("initlization successfull!");
+                          console.log(data.res[0].spotify_id)
+                          $.ajax({
+                            url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
+                            type: "PUT",
+                            data: `{"uris": ["spotify:track:${data.res[0].spotify_id}"]}`,
+                            headers: { 'Authorization': 'Bearer ' + '<%= @accessToken %>' },
+                            success: function(data) { 
+                              console.log(data)
+                            }
+                          });
                       }
-                    });
+                  })
                   } else {
                     newPlayer.togglePlay()
                   }
@@ -183,18 +206,13 @@
       
                 
             }
+
             var handleUpVote = s_id => {
                 console.log(s_id);
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    }
-                })
-
                 $.ajax({
                     url: `/song/up-vote?s_id=${s_id}`,
                     type: "POST",
+                    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                     success: function(data) {
                         console.log("Upvote request successfully made!");
                         getSongFunction();
@@ -204,16 +222,10 @@
 
             var handleDownVote = s_id => {
                 console.log(s_id);
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    }
-                })
-
                 $.ajax({
                     url: `/song/down-vote?s_id=${s_id}`,
                     type: "POST",
+                    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                     success: function(data) {
                         console.log("Downvote request successfully made!");
                         getSongFunction();

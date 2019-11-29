@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get   '/playlist/get-key',       to:'playlist#get_playlist_key'
   get   'playlist/decrypt-key',    to:'playlist#decrypt_key'
   get   'playlist/get-json',       to: 'playlist#get_json'
+  get   'playlist/trackState',       to: 'playlist#trackState'
   get   'playlist/get-songs',      to:'playlist#get_songs'
   post  'playlist/route-playlist', to: 'playlist#route_playlist'
   resources :playlist
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
   post '/song',           to: 'song#create'
   post '/song/up-vote',   to: 'song#up_vote'
   post '/song/down-vote', to: 'song#down_vote'
+  post '/playlist/songEnded', to: 'playlist#fetchNewSongAndDeleteOld'
 
   #testing
   get '/test-get-songs',   to: 'playlist#test_get_songs'
