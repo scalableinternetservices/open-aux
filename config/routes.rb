@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   post '/song/up-vote',   to: 'song#up_vote'
   post '/song/down-vote', to: 'song#down_vote'
 
+  #testing
+  get '/test-get-songs',   to: 'playlist#test_get_songs'
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"

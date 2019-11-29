@@ -9,9 +9,18 @@ class PlaylistController < ApplicationController
     @playlist = Playlist.where(hashed_id=session[hashed_id])
     @hashed_id = session[:hashed_id]
     if params[:search]
-      @songs = Song.where("lower(name) LIKE ? OR lower(artist) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+      # deprecated
+      # @songs = Song.where("lower(name) LIKE ? OR lower(artist) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+
+      # updated, valid
+      @songs = Song.where("lower(name) LIKE ? OR lower(artist) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
+
     else
-      @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+      # deprecated
+      # @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) ).order('vote_count DESC')
+
+      # updated, valid
+      @songs = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
     end
   end 
 
@@ -23,30 +32,43 @@ class PlaylistController < ApplicationController
       @playlist = Playlist.new
       render 'new'
     else
-      @playlist = Playlist.create(name: playlist_params[:name], userId: session[:user_id], hashed_id: nil)
+      @playlist = Playlist.create(name: playlist_params[:name], user_id: session[:user_id], hashed_id: nil)
       hashed_id = BCrypt::Password.create(@playlist.id)
       @playlist[:hashed_id] = hashed_id
       @playlist.save()
       session[:hashed_id] = @playlist.hashed_id
-      @key = BCrypt::Password.new(session[:hashed_id])
-      @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
+      @key = BCrypt::Password.new(session[:hashed_id])    
+      # Deprecated line:  
+      # @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id), name: "ABDDSFLKS" ).order('vote_count DESC')
+      
+      # updated, valid
+      @songs = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
       render "show"
     end
   end 
 
-  # returns a hashed value of the playlist's hashed_id
-  # guest can then decode that and access the playlist w/ the hashed_id
   def get_playlist_key
     @key = BCrypt::Password.new(session[:hashed_id])
     render json: {key: @key}
   end
 
-  def get_songs
-    #puts session[:hashed_id]
+  # endpoint unused
+  # def get_songs
+  #   #puts session[:hashed_id]
+  #   @hashed_id = session[:hashed_id]
+  #   @songs = Song.where( id: PlaylistSong.where(hashed_id:"$2a$12$oueH0DxM8ZoyW2bODWtDhOI/jEpHW.8HhHN3eCzXsZzbrAYgWdVEC").pluck(:song_id) )
+
+  #   render json: {res: @songs, res2: @songs2}
+  # end
+
+
+  # test version - change this to get_songs (the def above) and deprecate the current version of get_songs
+  def test_get_songs
     @hashed_id = session[:hashed_id]
-    @songs = Song.where( id: PlaylistSong.where(hashed_id: @hashed_id).pluck(:song_id) )
-    
-    render json: {res: @songs}
+    # Working model
+    @songsInPlaylist = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id:"$2a$12$87gsPmnazedML05/f5YHGOgcHisAvzDCKIrcWY.q.lBfrQkfyiJle" }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
+    #@songs1 = Song.where( id: PlaylistSong.where(hashed_id: "$2a$12$oueH0DxM8ZoyW2bODWtDhOI/jEpHW.8HhHN3eCzXsZzbrAYgWdVEC").pluck(:song_id))
+    render json: {res: @songsInPlaylist, res2: @songs1}
   end
 
   #req: :key, :name

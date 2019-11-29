@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def user_playlists
-    @playlists = Playlist.where(userId: session[:user_id])
+    @playlists = Playlist.where(user_id: session[:user_id])
     render json: {res: @playlists}
   end
 
