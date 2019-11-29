@@ -40,18 +40,7 @@
                         <div class="add-song">
                             <%= link_to "Add Song", "/searchResult", :class => "btn btn-primary" %>
                         </div>
-                        <% for song in @songs %>
-                            <div class="each-song">
-                                <div>
-                                    <h4><%= song.name %></h4>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-success" onClick="(function(){handleUpVote(<%= song.id %>);})();">Upvote</button>
-                                    <button type="button" class="btn btn-danger" onClick="(function(){handleDownVote(<%= song.id %>);})();">Downvote</button>
-                                    <button type="button" class="btn btn-info"><%= song.vote_count %></button>
-                                </div>
-                            </div>
-                        <% end %>
+                        <div class="song-list"></div>
                     </div>
                 </div>
             </div>
@@ -63,6 +52,33 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <script>
+          var getSongFunction = () => {
+            $.ajax({
+                url: "/playlist/get-json",
+                type: "GET",
+                success: function(data) {
+                    var htmlString = "";
+
+                    for (var i = 0; i < data.res.length; i++) {
+                      var upVoteString = `(function(){handleUpVote(${data.res[i].id});})()`;
+                      var downVoteString = `(function(){handleDownVote(${data.res[i].id});})()`;
+
+                      var upVoteButton = `<button type="button" class="btn btn-success" onClick=${upVoteString}>Upvote</button>`;
+                      var downVoteButton = `<button type="button" class="btn btn-danger" onClick=${downVoteString}>Downvote</button>`;
+                      var voteCount = `<button type="button" class="btn btn-info">${data.res[i].vote_count}</button>`;
+
+                      htmlString += `<div class="each-song"><div><h4>${data.res[i].name}</h4></div><div>${upVoteButton}${downVoteButton}${voteCount}</div></div>`;
+                    }
+
+                    $(".song-list").html(htmlString);
+                }
+            })
+          }
+        
+          $(document).ready(function() {
+            getSongFunction();
+          })
+        
           var newPlayer; 
           var currentState;
           var deviceId;
@@ -166,7 +182,7 @@
                 });
       
                 
-              }
+            }
             var handleUpVote = s_id => {
                 console.log(s_id);
 
@@ -181,7 +197,7 @@
                     type: "POST",
                     success: function(data) {
                         console.log("Upvote request successfully made!");
-                        window.location.reload();
+                        getSongFunction();
                     }
                 })
             }
@@ -200,7 +216,7 @@
                     type: "POST",
                     success: function(data) {
                         console.log("Downvote request successfully made!");
-                        window.location.reload();
+                        getSongFunction();
                     }
                 })
             }

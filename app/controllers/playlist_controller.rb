@@ -55,6 +55,17 @@ class PlaylistController < ApplicationController
     end
   end 
 
+  def get_json
+    @playlist = Playlist.where(hashed_id=session[hashed_id])
+    @hashed_id = session[:hashed_id]
+    if params[:search]
+      @songs = Song.where("lower(name) LIKE ? OR lower(artist) LIKE ?", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
+    else
+      @songs = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
+    end
+    render json: {res: @songs}
+  end
+
   def get_playlist_key
     @key = BCrypt::Password.new(session[:hashed_id])
     render json: {key: @key}

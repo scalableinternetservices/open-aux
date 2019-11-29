@@ -42,6 +42,7 @@ class SongController < ApplicationController
     @playlist_song = PlaylistSong.where(song_id: params[:s_id].to_f, hashed_id: session[:hashed_id]).first
     @playlist_song.update(vote_count: (@playlist_song.vote_count + 1))
     @playlist_song.save()
+
     render json: { res: @song }
   end
 
