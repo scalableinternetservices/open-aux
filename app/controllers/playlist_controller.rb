@@ -26,7 +26,9 @@ class PlaylistController < ApplicationController
       # updated, valid
       @songs = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
     end
+    if logged_in?
     @accessToken = User.find_by(id: session[:userId]).accessToken
+    end
     # @initializePlaylist = fetchNewSong
     # @firstVisit = 0
   end 
