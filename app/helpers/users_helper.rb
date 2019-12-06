@@ -6,7 +6,7 @@ module UsersHelper
     res = Net::HTTP.post_form(uri, 
     grant_type: 'authorization_code',
     code: params[:code],
-    redirect_uri: 'http://localhost:3000/auth/spotify/callback',
+    redirect_uri: 'http://openaux-demo-final.bu3hn7we2f.us-west-2.elasticbeanstalk.com/auth/spotify/callback',
     client_id: Rails.application.credentials.spotify[:client_id],
     client_secret: Rails.application.credentials.spotify[:client_secret]
     )

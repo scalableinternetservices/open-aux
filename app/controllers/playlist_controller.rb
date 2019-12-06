@@ -1,5 +1,6 @@
 require 'bcrypt'
 class PlaylistController < ApplicationController
+  include ActionController::Live
   # helper_method :fetchNewSong, :songEnded
   def new
     @playlist = Playlist.new
@@ -26,7 +27,9 @@ class PlaylistController < ApplicationController
       # updated, valid
       @songs = Song.joins(:playlist_songs).where(playlist_songs:{hashed_id: session[:hashed_id] }).select("songs.*, playlist_songs.vote_count").order('vote_count DESC')
     end
+    if logged_in?
     @accessToken = User.find_by(id: session[:userId]).accessToken
+    end
     # @initializePlaylist = fetchNewSong
     # @firstVisit = 0
   end 
@@ -132,6 +135,21 @@ class PlaylistController < ApplicationController
   def dashboard
     @accessToken = User.find_by(id: session[:userId]).accessToken
     render 'dashboard'
+  end
+
+  def update
+    response.headers['Content-Type'] = 'text/event-stream'
+    sse = SSE.new(response.stream, retry: 300, event: "updateQueue")
+    begin
+      PlaylistSong.on_change do |data|
+        sse.write(event: 'updateQueue')
+      end
+    rescue IOError
+      # Client Disconnected
+    ensure
+      sse.close
+    end
+    render nothing: true
   end
   
 
